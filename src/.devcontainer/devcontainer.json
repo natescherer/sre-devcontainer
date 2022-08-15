@@ -56,6 +56,7 @@
 		"azure-cli": "latest",
 		"git": "latest",
 		"git-lfs": "latest",
+		"github-cli": "latest",
 		"jupyterlab": "latest",
 		"kubectl-helm-minikube": "latest",
 		"powershell": "latest",

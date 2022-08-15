@@ -1,0 +1,26 @@
+name: 'build' 
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - feature/initial-release
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (GitHub)
+        uses: actions/checkout@v2
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and run dev container task
+        uses: devcontainers/ci@v0.2
+        with:
+          subFolder: src
+          imageName: ghcr.io/natescherer/sre-devcontainer
+          runCmd: echo Hello

@@ -36,7 +36,7 @@ The container includes tooling for the below technologies, sorted alphabetically
   - OpenSSH Server
 - Terraform
   - Terraform CLI
-  - Terralint
+  - TFLint
   - Terragrunt
 - VSCode Extensions
   - Code Spell Checker (streetsidesoftware.code-spell-checker)

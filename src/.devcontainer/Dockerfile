@@ -21,4 +21,4 @@ RUN if [ "${NODE_VERSION}" != "none" ]; then su vscode -c "umask 0002 && . /usr/
 # RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1
 
 # Stop Azure CLI from asking about surveys
-RUN su vscode -c "az config set output.show_survey_link=no"
+ENV AZURE_OUTPUT_SHOW_SURVEY_LINK=false

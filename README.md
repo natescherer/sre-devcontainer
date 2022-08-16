@@ -25,6 +25,7 @@ The container includes tooling for the below technologies, sorted alphabetically
   - k9s
   - kubectl
   - kubectx
+  - kubens
 - PowerShell
   - LTS-current release
   - Includes PowerShell modules useful to SREs (full list available under [releases](releases))

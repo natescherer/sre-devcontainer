@@ -31,8 +31,9 @@ RUN brew install kubectx k9s
 # Install PowerShell and PowerShell modules
 COPY .devcontainer/library-scripts/powershell-debian.sh /tmp/library-scripts/
 RUN apt-get update && bash /tmp/library-scripts/powershell-debian.sh
+COPY .devcontainer/requirements_pwsh.txt /tmp/pwsh-tmp/
 RUN pwsh -c "Set-PSRepository -Name PSGallery -InstallationPolicy Trusted"
-RUN pwsh -c "Install-Module -Name (Get-Content .devcontainer/requirements_pwsh.txt) -Scope AllUsers"
+RUN pwsh -c "Install-Module -Name (Get-Content /tmp/pwsh-tmp/requirements_pwsh.txt) -Scope AllUsers"
 
 # [Optional] Uncomment this line to install global node packages.
 # RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1

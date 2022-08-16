@@ -57,10 +57,6 @@
 		"git": "latest",
 		"git-lfs": "latest",
 		"github-cli": "latest",
-		"homebrew": {
-			"version": "latest",
-			"shallow": true
-		},
 		"jupyterlab": "latest",
 		"kubectl-helm-minikube": "latest",
 		"powershell": "latest",

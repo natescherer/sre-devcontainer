@@ -18,6 +18,13 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Download scripts needed for Dockerfile
+        uses: Amadevus/pwsh-script@v2
+        with:
+          script: |
+            $BasePath = "./src/.devcontainer/library-scripts"
+            New-Item -Type Directory -Path $BasePath
+            Invoke-WebRequest -Uri "https://raw.githubusercontent.com/microsoft/vscode-dev-containers/main/script-library/homebrew-debian.sh" -OutFile "$Basepath/homebrew-debian.sh"
       - name: Build and run dev container task
         uses: devcontainers/ci@v0.2
         with:

@@ -58,8 +58,6 @@
 		"git-lfs": "latest",
 		"github-cli": "latest",
 		"jupyterlab": "latest",
-		"kubectl-helm-minikube": "latest",
-		"powershell": "latest",
 		"sshd": "latest",
 		"terraform": {
 			"version": "latest",

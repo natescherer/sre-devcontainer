@@ -18,6 +18,7 @@ RUN if [ "${NODE_VERSION}" != "none" ]; then su vscode -c "umask 0002 && . /usr/
 #     && apt-get -y install --no-install-recommends <your-package-list-here>
 
 # Install Homebrew and Homebreaw packages
+RUN ls -R
 ENV BREW_PREFIX=/home/linuxbrew/.linuxbrew
 ENV PATH=${BREW_PREFIX}/sbin:${BREW_PREFIX}/bin:${PATH}
 COPY library-scripts/homebrew-debian.sh /tmp/library-scripts/

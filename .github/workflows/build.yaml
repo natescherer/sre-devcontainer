@@ -27,8 +27,7 @@ jobs:
         uses: actions/upload-artifact@v3.1.0
         with:
           name: testing-artifact
-          path: ${{ env.GITHUB_WORKSPACE }}
-
+          path: ${{ github.workspace }}
       - name: Build and run dev container task
         uses: devcontainers/ci@v0.2
         with:

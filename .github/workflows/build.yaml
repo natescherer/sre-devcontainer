@@ -18,13 +18,11 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Download scripts needed for Dockerfile
-        uses: Amadevus/pwsh-script@v2
+      - name: Download Homebrew install script
+        uses: carlosperate/download-file-action@v1.1.1
         with:
-          script: |
-            $BasePath = "./src/.devcontainer/library-scripts"
-            New-Item -Type Directory -Path $BasePath
-            Invoke-WebRequest -Uri "https://raw.githubusercontent.com/microsoft/vscode-dev-containers/main/script-library/homebrew-debian.sh" -OutFile "$Basepath/homebrew-debian.sh"
+          file-url: https://raw.githubusercontent.com/microsoft/vscode-dev-containers/main/script-library/homebrew-debian.sh
+          location: ./src/.devcontainer/library-scripts
       - name: Build and run dev container task
         uses: devcontainers/ci@v0.2
         with:

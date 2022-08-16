@@ -17,11 +17,10 @@ RUN if [ "${NODE_VERSION}" != "none" ]; then su vscode -c "umask 0002 && . /usr/
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 #     && apt-get -y install --no-install-recommends <your-package-list-here>
 
-# Install Homebrew and Homebreaw packages
-RUN ls -R
+# Install Homebrew and Homebrew packages
 ENV BREW_PREFIX=/home/linuxbrew/.linuxbrew
 ENV PATH=${BREW_PREFIX}/sbin:${BREW_PREFIX}/bin:${PATH}
-COPY library-scripts/homebrew-debian.sh /tmp/library-scripts/
+COPY .devcontainer/library-scripts/homebrew-debian.sh /tmp/library-scripts/
 RUN apt-get update && bash /tmp/library-scripts/homebrew-debian.sh
 RUN brew install kubectx k9s
 

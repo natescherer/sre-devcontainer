@@ -9,9 +9,9 @@ ARG NODE_VERSION="none"
 RUN if [ "${NODE_VERSION}" != "none" ]; then su vscode -c "umask 0002 && . /usr/local/share/nvm/nvm.sh && nvm install ${NODE_VERSION} 2>&1"; fi
 
 # [Optional] If your pip requirements rarely change, uncomment this section to add them to the image.
-# COPY requirements.txt /tmp/pip-tmp/
-# RUN pip3 --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requirements.txt \
-#    && rm -rf /tmp/pip-tmp
+COPY .devcontainer/requirements.txt /tmp/pip-tmp/
+RUN pip3 --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requirements.txt \
+   && rm -rf /tmp/pip-tmp
 
 # [Optional] Uncomment this section to install additional OS packages.
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
@@ -32,7 +32,7 @@ RUN brew install kubectx k9s
 COPY .devcontainer/library-scripts/powershell-debian.sh /tmp/library-scripts/
 RUN apt-get update && bash /tmp/library-scripts/powershell-debian.sh
 RUN pwsh -c "Set-PSRepository -Name PSGallery -InstallationPolicy Trusted"
-RUN pwsh -c "Install-Module Az"
+RUN pwsh -c "Install-Module -Name (Get-Content .devcontainer/requirements_pwsh.txt) -Scope AllUsers"
 
 # [Optional] Uncomment this line to install global node packages.
 # RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1

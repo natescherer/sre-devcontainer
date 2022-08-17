@@ -33,4 +33,4 @@ jobs:
         with:
           subFolder: src
           imageName: ghcr.io/natescherer/sre-devcontainer
-          runCmd: echo Hello
+          runCmd: python /opt/sredevcontainer/versioninfo.py

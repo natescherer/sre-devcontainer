@@ -37,3 +37,6 @@ RUN pwsh -c "Install-Module -Name (Get-Content /tmp/pwsh-tmp/requirements_pwsh.t
 
 # Stop Azure CLI from asking about surveys
 ENV AZURE_OUTPUT_SHOW_SURVEY_LINK=false
+
+# Load in scripts custom to this container
+COPY .devcontainer/versioninfo.py /opt/sredevcontainer/

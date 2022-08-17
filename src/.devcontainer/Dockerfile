@@ -17,16 +17,13 @@ RUN pip3 --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requ
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 #     && apt-get -y install --no-install-recommends <your-package-list-here>
 
-# Install Kubernetes tools
-COPY .devcontainer/library-scripts/kubectl-helm-debian.sh /tmp/library-scripts/
-RUN apt-get update && bash /tmp/library-scripts/kubectl-helm-debian.sh
-
 # Install Homebrew and Homebrew packages
 ENV BREW_PREFIX=/home/linuxbrew/.linuxbrew
 ENV PATH=${BREW_PREFIX}/sbin:${BREW_PREFIX}/bin:${PATH}
 COPY .devcontainer/library-scripts/homebrew-debian.sh /tmp/library-scripts/
 RUN apt-get update && bash /tmp/library-scripts/homebrew-debian.sh automatic true true
-RUN brew install kubectx k9s
+RUN brew install --ignore-dependencies kubectx
+RUN brew install k9s
 
 # Install PowerShell and PowerShell modules
 COPY .devcontainer/library-scripts/powershell-debian.sh /tmp/library-scripts/

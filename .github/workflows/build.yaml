@@ -18,11 +18,6 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Download kubectl install script
-        uses: carlosperate/download-file-action@v1.1.1
-        with:
-          file-url: https://raw.githubusercontent.com/microsoft/vscode-dev-containers/main/script-library/kubectl-helm-debian.sh
-          location: ./src/.devcontainer/library-scripts
       - name: Download Homebrew install script
         uses: carlosperate/download-file-action@v1.1.1
         with:

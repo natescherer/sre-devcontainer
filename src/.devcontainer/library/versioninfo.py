@@ -143,9 +143,9 @@ tflint_raw = subprocess.run(
 tflint_ver = tflint_raw.splitlines()[0].split(" ")[-1]
 print(f"| TFLint | {tflint_ver} |")
 terragrunt_raw = subprocess.run(
-    ["tflint", "-v"],
+    ["terragrunt", "-v"],
     check=True,
     stdout=subprocess.PIPE
 ).stdout.decode("utf-8")
 terragrunt_ver = terragrunt_raw.splitlines()[0].split(" v")[-1]
-print(f"| TFLint | {terragrunt_ver} |")
+print(f"| Terragrunt | {terragrunt_ver} |")

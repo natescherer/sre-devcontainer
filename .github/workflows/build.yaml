@@ -22,12 +22,12 @@ jobs:
         uses: carlosperate/download-file-action@v1.1.1
         with:
           file-url: https://raw.githubusercontent.com/microsoft/vscode-dev-containers/main/script-library/homebrew-debian.sh
-          location: ./src/.devcontainer/library-scripts
+          location: ./src/.devcontainer/library
       - name: Download PowerShell install script
         uses: carlosperate/download-file-action@v1.1.1
         with:
           file-url: https://raw.githubusercontent.com/microsoft/vscode-dev-containers/main/script-library/powershell-debian.sh
-          location: ./src/.devcontainer/library-scripts
+          location: ./src/.devcontainer/library
       - name: Build and run dev container task
         uses: natescherer/devcontainers-ci@feature/action-runcmd-output
         id: buildcontainer

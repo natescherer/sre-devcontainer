@@ -27,13 +27,6 @@ git_raw = subprocess.run(
 ).stdout.decode("utf-8")
 git_ver = git_raw.splitlines()[0].split(" ")[-1]
 print(f"| Git | {git_ver} |")
-gitlfs_raw = subprocess.run(
-    ["git", "lfs", "version"],
-    check=True,
-    stdout=subprocess.PIPE
-).stdout.decode("utf-8")
-gitlfs_ver = gitlfs_raw.splitlines()[0].split("/")[1].split(" ")[0]
-print(f"| Git LFS | {gitlfs_ver} |")
 
 print("GitHub")
 gh_raw = subprocess.run(

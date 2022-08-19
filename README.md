@@ -15,7 +15,7 @@ The container includes tooling for the below technologies, sorted alphabetically
   - Az PowerShell module
   - Azure CLI
 - Git
-  - Git with LFS support
+  - Git
 - GitHub
   - GitHub CLI
 - Jupyter

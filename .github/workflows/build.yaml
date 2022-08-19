@@ -29,8 +29,14 @@ jobs:
           file-url: https://raw.githubusercontent.com/microsoft/vscode-dev-containers/main/script-library/powershell-debian.sh
           location: ./src/.devcontainer/library-scripts
       - name: Build and run dev container task
-        uses: devcontainers/ci@v0.2
+        uses: natescherer/devcontainers-ci@feature/action-runcmd-output
+        id: buildcontainer
         with:
           subFolder: src
           imageName: ghcr.io/natescherer/sre-devcontainer
           runCmd: python /opt/sredevcontainer/versioninfo.py
+      - name: Echo output
+        run: |
+          echo $output
+        env:
+          output: ${{ steps.buildcontainer.outputs.runCmdOutput }}

@@ -117,10 +117,10 @@ pip_json = subprocess.run(
 pip_array = json.loads(pip_json)
 py_packages = []
 for pkg in pip_array:
-    py_packages += {
+    py_packages.append({
         "Tool": pkg["name"],
         "Version": pkg["version"]
-    }
+    })
 
 
 # SSH
@@ -154,7 +154,7 @@ tflint_raw = subprocess.run(
     stdout=subprocess.PIPE
 ).stdout.decode("utf-8")
 tflint_ver = tflint_raw.splitlines()[0].split(" ")[-1]
-print(f"| TFLint | {tflint_ver} |")
+
 
 output_data = [
     {
@@ -165,19 +165,9 @@ output_data = [
                 "Version": aws_ver
             },
             {
-                "Tool": "AWSPowerShell.NetCore PowerShell Module",
-                "Version": [x for x in pwsh_modules
-                            if x["Tool"] == "AWSPowerShell.NetCore"][0]["Version"]
-            },
-            {
                 "Tool": "boto3 Python Package",
                 "Version": [x for x in py_packages
                             if x["Tool"] == "boto3"][0]["Version"]
-            },
-            {
-                "Tool": "s3transfer Python Package",
-                "Version": [x for x in py_packages
-                            if x["Tool"] == "s3transfer"][0]["Version"]
             }
         ]
     },
@@ -192,21 +182,6 @@ output_data = [
             {
                 "Tool": "Azure CLI",
                 "Version": az_ver
-            },
-            {
-                "Tool": "CosmosDB PowerShell Module",
-                "Version": [x for x in pwsh_modules
-                            if x["Tool"] == "CosmosDB"][0]["Version"]
-            },
-            {
-                "Tool": "Microsoft.Graph PowerShell Module",
-                "Version": [x for x in pwsh_modules
-                            if x["Tool"] == "Microsoft.Graph"][0]["Version"]
-            },
-            {
-                "Tool": "SqlServer PowerShell Module",
-                "Version": [x for x in pwsh_modules
-                            if x["Tool"] == "SqlServer"][0]["Version"]
             }
         ]
     },

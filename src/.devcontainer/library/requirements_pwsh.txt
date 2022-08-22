@@ -1,2 +1,12 @@
+AWSPowerShell.NetCore
 Az
 ChangelogManagement
+CosmosDB
+Microsoft.Graph
+oh-my-posh
+Plaster
+PoshEmail
+ServiceNow
+powershell-yaml
+SqlServer
+VSTeam

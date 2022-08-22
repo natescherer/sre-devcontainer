@@ -54,3 +54,4 @@ python-slugify
 PyYAML
 requests
 s3transfer
+semver

@@ -4,6 +4,11 @@ FROM mcr.microsoft.com/vscode/devcontainers/python:0-${VARIANT}
 # Copy support files into image
 COPY .devcontainer/library/* /opt/sredevcontainer/
 
+# Set up zsh and pwsh profiles
+RUN cat /opt/sredevcontainer/profile >> /home/vscode/.zshrc && \
+    mkdir /home/vscode/.config/powershell && \
+    cat /opt/sredevcontainer/profile > /home/vscode/.config/powershell/profile.ps1
+
 # Install Python packages
 RUN pip3 --no-cache-dir install --upgrade pip && \
     pip3 --no-cache-dir install -r /opt/sredevcontainer/requirements.txt

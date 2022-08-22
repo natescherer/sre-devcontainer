@@ -1,3 +1,4 @@
+"""Gets versions of tools that are part of the SRE devcontainer"""
 import subprocess
 import json
 

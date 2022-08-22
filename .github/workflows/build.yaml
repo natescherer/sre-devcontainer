@@ -12,6 +12,13 @@ jobs:
     steps:
       - name: Checkout (GitHub)
         uses: actions/checkout@v2
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0.9
+        with:
+          versionSpec: 5.x
+      - name: Determine Version
+        id: gitversion
+        uses: gittools/actions/gitversion/execute@v0.9
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
         with:
@@ -28,6 +35,10 @@ jobs:
         with:
           file-url: https://raw.githubusercontent.com/microsoft/vscode-dev-containers/main/script-library/powershell-debian.sh
           location: ./src/.devcontainer/library
+      - name: Create VERSION file
+        run: echo $DEVCONTAINER_VERSION > ./src/.devcontainer/library/VERSION
+        env:
+          DEVCONTAINER_VERSION: ${{ steps.gitversion.outputs.MajorMinorPatch }}
       - name: Build and run dev container task
         uses: natescherer/devcontainers-ci@feature/action-runcmd-output
         id: buildcontainer
@@ -35,8 +46,14 @@ jobs:
           subFolder: src
           imageName: ghcr.io/natescherer/sre-devcontainer
           runCmd: python /opt/sredevcontainer/versioninfo.py
-      - name: Echo output
-        run: |
-          echo $output
-        env:
-          output: ${{ steps.buildcontainer.outputs.runCmdOutput }}
+      - name: Write version info to file
+        uses: devops-actions/json-to-file@v1
+        with:
+          json: ${{ steps.buildcontainer.outputs.runCmdOutput }}
+          filename: /tmp/versioninfo.json
+      - name: Render version info table for release
+        uses: gazab/create-markdown-table@v1
+        id: create_table
+        with:
+          file: /tmp/versioninfo.json
+      - run: echo ${{ steps.create_table.outputs.table }}

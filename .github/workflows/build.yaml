@@ -52,10 +52,10 @@ jobs:
         uses: devops-actions/json-to-file@v1.0.0
         with:
           json: ${{ steps.buildcontainer.outputs.runCmdOutput }}
-          filename: /tmp/versioninfo.json
+          filename: tool-versions.json
       - name: Render version info table for release
         uses: gazab/create-markdown-table@v1
         id: create_table
         with:
-          file: /tmp/versioninfo.json
+          file: tool-versions.json
       - run: echo ${{ steps.create_table.outputs.table }}

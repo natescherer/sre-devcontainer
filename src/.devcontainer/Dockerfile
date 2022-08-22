@@ -6,7 +6,7 @@ COPY .devcontainer/library/* /opt/sredevcontainer/
 
 # Set up zsh and pwsh profiles
 RUN cat /opt/sredevcontainer/profile >> /home/vscode/.zshrc && \
-    mkdir /home/vscode/.config/powershell && \
+    mkdir -p /home/vscode/.config/powershell && \
     cat /opt/sredevcontainer/profile > /home/vscode/.config/powershell/profile.ps1
 
 # Install Python packages

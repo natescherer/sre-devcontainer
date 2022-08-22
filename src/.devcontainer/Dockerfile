@@ -9,10 +9,11 @@ RUN pip3 --no-cache-dir install --upgrade pip && \
     pip3 --no-cache-dir install -r /opt/sredevcontainer/requirements.txt
 
 # Install Homebrew and Homebrew packages
-ENV BREW_PREFIX=/home/linuxbrew/.linuxbrew
-ENV PATH=${BREW_PREFIX}/sbin:${BREW_PREFIX}/bin:${PATH}
-ENV USE_SHALLOW_CLONE=true
-RUN apt-get update && bash /opt/sredevcontainer/homebrew-debian.sh automatic true true && \
+ENV PATH=/home/linuxbrew/.linuxbrew/sbin:/home/linuxbrew/.linuxbrew/bin:${PATH}
+RUN apt-get update && \
+    export USE_SHALLOW_CLONE="true" && \
+    bash /opt/sredevcontainer/homebrew-debian.sh automatic true true && \
+    unset USE_SHALLOW_CLONE && \
     brew install --ignore-dependencies kubectx && \
     brew install k9s && \
     rm -rf /var/lib/apt/lists/*

@@ -26,12 +26,12 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Download Homebrew install script
-        uses: carlosperate/download-file-action@v1.1.1
+        uses: carlosperate/download-file-action@v1
         with:
           file-url: https://raw.githubusercontent.com/microsoft/vscode-dev-containers/main/script-library/homebrew-debian.sh
           location: ./src/.devcontainer/library
       - name: Download PowerShell install script
-        uses: carlosperate/download-file-action@v1.1.1
+        uses: carlosperate/download-file-action@v1
         with:
           file-url: https://raw.githubusercontent.com/microsoft/vscode-dev-containers/main/script-library/powershell-debian.sh
           location: ./src/.devcontainer/library
@@ -47,7 +47,7 @@ jobs:
           imageName: ghcr.io/natescherer/sre-devcontainer
           runCmd: python /opt/sredevcontainer/versioninfo.py
       - name: Write version info to file
-        uses: devops-actions/json-to-file@v1
+        uses: devops-actions/json-to-file@v1.0.0
         with:
           json: ${{ steps.buildcontainer.outputs.runCmdOutput }}
           filename: /tmp/versioninfo.json

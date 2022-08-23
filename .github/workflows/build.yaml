@@ -42,11 +42,11 @@ jobs:
         with:
           subFolder: src
           imageName: ghcr.io/natescherer/sre-devcontainer
-          runCmd: python /opt/sredevcontainer/get_tool_versions.py
-      - name: Write version info to file
-        uses: devops-actions/json-to-file@v1.0.0
-        with:
-          json: ${{ steps.buildcontainer.outputs.runCmdOutput }}
-          filename: tool-versions.json
-      # Figure out how to make a table here
-      - run: echo "${{ steps.buildcontainer.outputs.runCmdOutput }}"
+      #     runCmd: python /opt/sredevcontainer/get_tool_versions.py
+      # - name: Write version info to file
+      #   uses: devops-actions/json-to-file@v1.0.0
+      #   with:
+      #     json: ${{ steps.buildcontainer.outputs.runCmdOutput }}
+      #     filename: tool-versions.json
+      # # Figure out how to make a table here
+      # - run: echo "${{ steps.buildcontainer.outputs.runCmdOutput }}"

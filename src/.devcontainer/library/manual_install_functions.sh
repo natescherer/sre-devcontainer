@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 find_github_release_asset_url() {
     local owner=$1
     local repo=$2

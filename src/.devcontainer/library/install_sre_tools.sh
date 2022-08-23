@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Install apt-get software
 apt-get update
 bash /opt/sredevcontainer/powershell-debian.sh

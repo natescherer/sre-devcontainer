@@ -71,11 +71,18 @@ kubectl_raw = subprocess.run(
 kubectl_ver = kubectl_raw.splitlines()[0].split(" v")[1]
 
 kubectx_raw = subprocess.run(
-    ["brew", "list", "--versions", "kubectx"],
+    ["kubectx", "--version"],
     check=True,
     stdout=subprocess.PIPE
 ).stdout.decode("utf-8")
-kubectx_ver = kubectx_raw.splitlines()[0].split(" ")[1]
+kubectx_ver = kubectx_raw.splitlines()[0]
+
+kubens_raw = subprocess.run(
+    ["kubens", "--version"],
+    check=True,
+    stdout=subprocess.PIPE
+).stdout.decode("utf-8")
+kubens_ver = kubens_raw.splitlines()[0]
 
 
 # PowerShell
@@ -234,7 +241,7 @@ output_data = [
             },
             {
                 "Tool": "kubens",
-                "Version": kubectx_ver
+                "Version": kubens_ver
             }
         ]
     },

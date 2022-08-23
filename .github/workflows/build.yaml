@@ -27,11 +27,6 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Download Homebrew install script
-        uses: carlosperate/download-file-action@v1
-        with:
-          file-url: https://raw.githubusercontent.com/microsoft/vscode-dev-containers/main/script-library/homebrew-debian.sh
-          location: ./src/.devcontainer/library
       - name: Download PowerShell install script
         uses: carlosperate/download-file-action@v1
         with:

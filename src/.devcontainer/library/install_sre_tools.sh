@@ -13,12 +13,9 @@ install_from_github derailed k9s k9s_Linux_ARCH.tar.gz /opt/k9s/k9s
 
 # Set up zsh and pwsh profiles
 sudo -u vscode mkdir -p /home/vscode/.config/powershell
-local UPDATE_SCRIPT="python3 /opt/sredevcontainer/check_for_updates.py"
-local UPDATE_SCRIPT_ZSH="${UPDATE_SCRIPT} > 2>&1"
-local UPDATE_SCRIPT_PWSH="${UPDATE_SCRIPT} > 1>&3"
-sudo -u vscode echo $UPDATE_SCRIPT >> /home/vscode/.zshrc
-sudo -u vscode echo $UPDATE_SCRIPT > /home/vscode/.config/powershell/profile.ps1
-
+UPDATE_SCRIPT=""
+sudo -u vscode echo "python3 /opt/sredevcontainer/check_for_updates.py > 2>&1" >> /home/vscode/.zshrc
+sudo -u vscode echo "Start-Process -FilePath 'python3' -ArgumentList '/opt/sredevcontainer/check_for_updates.py' -Wait | Write-Warning" > /home/vscode/.config/powershell/profile.ps1
 # Install Python packages
 pip3 --no-cache-dir install --upgrade pip
 pip3 --no-cache-dir install -r /opt/sredevcontainer/requirements.txt

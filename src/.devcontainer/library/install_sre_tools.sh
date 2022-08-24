@@ -12,10 +12,12 @@ install_from_github ahmetb kubectx kubens_vVERSION_linux_ARCH.tar.gz /opt/kubens
 install_from_github derailed k9s k9s_Linux_ARCH.tar.gz /opt/k9s/k9s
 
 # Set up zsh and pwsh profiles
-UPDATE_SCRIPT="python3 /opt/sredevcontainer/check_for_updates.py"
-echo $UPDATE_SCRIPT >> /home/vscode/.zshrc
 sudo -u vscode mkdir -p /home/vscode/.config/powershell
-echo $UPDATE_SCRIPT > /home/vscode/.config/powershell/profile.ps1
+local UPDATE_SCRIPT="python3 /opt/sredevcontainer/check_for_updates.py"
+local UPDATE_SCRIPT_ZSH="${UPDATE_SCRIPT} > 2>&1"
+local UPDATE_SCRIPT_PWSH="${UPDATE_SCRIPT} > 1>&3"
+sudo -u vscode echo $UPDATE_SCRIPT >> /home/vscode/.zshrc
+sudo -u vscode echo $UPDATE_SCRIPT > /home/vscode/.config/powershell/profile.ps1
 
 # Install Python packages
 pip3 --no-cache-dir install --upgrade pip

@@ -37,16 +37,17 @@ jobs:
         env:
           DEVCONTAINER_VERSION: ${{ steps.gitversion.outputs.FullSemVer }}
       - name: Build and run dev container task
-        uses: natescherer/devcontainers-ci@feature/action-runcmd-output
+        uses: natescherer/devcontainers-ci@feature/multiple-architectures
         id: buildcontainer
         with:
           subFolder: src
           imageName: ghcr.io/natescherer/sre-devcontainer
+          platform: linux/amd64,linux/arm64
           runCmd: python /opt/sredevcontainer/get_tool_versions.py
-      - name: Write version info to file
-        uses: devops-actions/json-to-file@v1.0.0
-        with:
-          json: ${{ steps.buildcontainer.outputs.runCmdOutput }}
-          filename: tool-versions.json
-      # Figure out how to make a table here
-      - run: echo "${{ steps.buildcontainer.outputs.runCmdOutput }}"
+      # - name: Write version info to file
+      #   uses: devops-actions/json-to-file@v1.0.0
+      #   with:
+      #     json: ${{ steps.buildcontainer.outputs.runCmdOutput }}
+      #     filename: tool-versions.json
+      # # Figure out how to make a table here
+      # - run: echo "${{ steps.buildcontainer.outputs.runCmdOutput }}"

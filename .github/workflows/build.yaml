@@ -42,6 +42,8 @@ jobs:
       #   with:
       #     subFolder: src
       #     runCmd: python /opt/sredevcontainer/get_tool_versions.py
+      - name: Set up QEMU for multi-architecture builds
+        uses: docker/setup-qemu-action@v1
       - name: Setup Docker buildx for multi-architecture builds
         uses: docker/setup-buildx-action@v1
         with:

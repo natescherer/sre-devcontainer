@@ -5,10 +5,12 @@ FROM mcr.microsoft.com/vscode/devcontainers/python:0-${VARIANT}
 COPY .devcontainer/library/* /opt/sredevcontainer/
 
 # Install apt software
-RUN apt update && \
+RUN export DEBIAN_FRONTEND=noninteractive && \
+    apt update && \
     bash /opt/sredevcontainer/powershell-debian.sh && \
-    xargs -a /opt/sredevcontainer/packages_apt.txt apt install && \
-    rm -rf /var/lib/apt/lists/*
+    xargs -a /opt/sredevcontainer/packages_apt.txt apt install -y && \
+    rm -rf /var/lib/apt/lists/* && \
+    unset DEBIAN_FRONTEND
 
 # Install GitHub software
 RUN source /opt/sredevcontainer/manual_install_functions.sh && \
@@ -24,4 +26,8 @@ RUN pip3 --no-cache-dir install --upgrade pip && \
     pip3 --no-cache-dir install -r /opt/sredevcontainer/requirements.txt
 
 # Install PowerShell modules
-RUN pwsh -c "Set-PSRepository -Name PSGallery -InstallationPolicy Trusted; Install-Module -Name (Get-Content /opt/sredevcontainer/requirements_pwsh.txt) -Scope AllUsers"
+RUN pwsh -c "Set-PSRepository -Name PSGallery -InstallationPolicy Trusted" && \
+    pwsh -c "Install-Module -Name (Get-Content /opt/sredevcontainer/requirements_pwsh.txt) -Scope AllUsers"
+
+# Suppress Azure CLI noise
+ENV AZURE_OUTPUT_SHOW_SURVEY_LINK=false

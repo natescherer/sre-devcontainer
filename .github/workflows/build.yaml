@@ -42,6 +42,10 @@ jobs:
       #   with:
       #     subFolder: src
       #     runCmd: python /opt/sredevcontainer/get_tool_versions.py
+      - name: Setup Docker buildx for multi-architecture builds
+        uses: docker/setup-buildx-action@v1
+        with:
+          use: true
       - name: Build and release devcontainer
         uses: natescherer/devcontainers-ci@feature/multiple-architectures
         with:

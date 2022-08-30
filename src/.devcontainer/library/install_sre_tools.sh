@@ -3,6 +3,7 @@
 # Install apt-get software
 apt-get update
 bash /opt/sredevcontainer/powershell-debian.sh
+apt install cmake
 rm -rf /var/lib/apt/lists/*
 
 # Install manual software

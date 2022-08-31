@@ -58,16 +58,4 @@ download_and_install_gzipped_tarball() {
     rm -rf /tmp/ballinstall
 }
 
-install_from_github() {
-    local owner=$1
-    local repo=$2
-    local release_asset_format=$3
-    local symlink_target=$4
-    local version=${5-"latest"}
-
-    local asset_url=$(find_github_release_asset_url ${owner} ${repo} ${release_asset_format} ${version})
-
-    download_and_install_gzipped_tarball "${asset_url}" "${symlink_target}"
-}
-
-export -f install_from_github
+download_and_install_gzipped_tarball "$(find_github_release_asset_url $1 $2 $3 $5)" "$4"

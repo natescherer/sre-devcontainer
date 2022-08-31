@@ -16,8 +16,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     unset DEBIAN_FRONTEND
 
 # Install GitHub software
-RUN source /opt/sredevcontainer/manual_install_functions.sh && \
-    xargs -a /opt/sredevcontainer/packages_github.txt install_from_github
+RUN xargs -a /opt/sredevcontainer/packages_github.txt bash /opt/sredevcontainer/install_from_github.sh
 
 # Set up shell profiles
 RUN sudo -u vscode mkdir -p /home/vscode/.config/powershell && \

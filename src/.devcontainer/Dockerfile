@@ -10,7 +10,7 @@ COPY .devcontainer/library/* /opt/sredevcontainer/
 # Install apt software
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt update && \
-    /opt/sredevcontainer/powershell-debian.sh && \
+    ./opt/sredevcontainer/powershell-debian.sh && \
     xargs -a /opt/sredevcontainer/packages_apt.txt apt install -y && \
     rm -rf /var/lib/apt/lists/* && \
     unset DEBIAN_FRONTEND

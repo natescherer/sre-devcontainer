@@ -69,3 +69,5 @@ install_from_github() {
 
     download_and_install_gzipped_tarball "${asset_url}" "${symlink_target}"
 }
+
+export -f install_from_github

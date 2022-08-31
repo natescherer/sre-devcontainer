@@ -1,6 +1,9 @@
 ARG VARIANT="3.10-bullseye"
 FROM mcr.microsoft.com/vscode/devcontainers/python:0-${VARIANT}
 
+# Set default shell for RUN commands to bash
+SHELL ["/bin/bash", "-c"]
+
 # Copy support files into image
 COPY .devcontainer/library/* /opt/sredevcontainer/
 

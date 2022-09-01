@@ -11,12 +11,12 @@ COPY .devcontainer/library/* /opt/sredevcontainer/
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt update && \
     bash /opt/sredevcontainer/powershell-debian.sh && \
-    xargs -a /opt/sredevcontainer/packages_apt.txt apt install -y && \
+    xargs -r -L1 -a /opt/sredevcontainer/packages_apt.txt apt install -y && \
     rm -rf /var/lib/apt/lists/* && \
     unset DEBIAN_FRONTEND
 
 # Install GitHub software
-RUN xargs -a /opt/sredevcontainer/packages_github.txt bash /opt/sredevcontainer/install_from_github.sh
+RUN xargs -r -L1 -a /opt/sredevcontainer/packages_github.txt bash /opt/sredevcontainer/install_from_github.sh
 
 # Set up shell profiles
 RUN sudo -u vscode mkdir -p /home/vscode/.config/powershell && \

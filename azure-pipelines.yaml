@@ -29,7 +29,7 @@ steps:
   displayName: Set up QEMU
 - script: docker buildx create --use
   displayName: Set up docker buildx
-- task: DevContainersCi@0
+- task: DevcontainersCi@0
   inputs:
     subFolder: src
     imageName: natescherer/sre-devcontainer

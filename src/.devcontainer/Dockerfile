@@ -1,5 +1,4 @@
-ARG VARIANT="3.10-bullseye"
-FROM mcr.microsoft.com/vscode/devcontainers/python:0-${VARIANT}
+FROM buildpack-deps:bullseye-curl
 
 # Set default shell for RUN commands to bash
 SHELL ["/bin/bash", "-c"]
@@ -19,9 +18,9 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 RUN xargs -r -L1 -a /opt/sredevcontainer/packages_github.txt bash /opt/sredevcontainer/install_from_github.sh
 
 # Set up shell profiles
-RUN sudo -u vscode mkdir -p /home/vscode/.config/powershell && \
-    sudo -u vscode echo "python3 /opt/sredevcontainer/check_for_updates.py" >> /home/vscode/.zshrc && \
-    sudo -u vscode echo "Start-Process -FilePath 'python3' -ArgumentList '/opt/sredevcontainer/check_for_updates.py' -Wait | Write-Warning" > /home/vscode/.config/powershell/profile.ps1
+RUN sudo -u user mkdir -p /home/user/.config/powershell && \
+    sudo -u user echo "python3 /opt/sredevcontainer/check_for_updates.py" >> /home/user/.zshrc && \
+    sudo -u user echo "Start-Process -FilePath 'python3' -ArgumentList '/opt/sredevcontainer/check_for_updates.py' -Wait | Write-Warning" > /home/user/.config/powershell/profile.ps1
 
 # Install Python packages
 RUN pip3 --no-cache-dir install --upgrade pip && \

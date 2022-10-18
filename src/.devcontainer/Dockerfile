@@ -30,4 +30,4 @@ RUN pip3 --no-cache-dir install --upgrade pip && \
 #     pwsh -c "Install-Module -Name (Get-Content /opt/sredevcontainer/requirements_pwsh.txt) -Scope AllUsers"
 
 # Suppress Azure CLI noise
-# ENV AZSURVEYMESSAGE=false
+ENV AZSURVEYMESSAGE=false

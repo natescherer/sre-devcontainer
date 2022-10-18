@@ -1,4 +1,4 @@
-FROM $IMAGE
+FROM $IMAGE_NAME
 
 # Set default shell for RUN commands to bash
 SHELL ["/bin/bash", "-c"]

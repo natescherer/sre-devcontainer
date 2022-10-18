@@ -201,15 +201,15 @@ output_data = [
             }
         ]
     },
-    {
-        "Technology": "Jupyter",
-        "Tools": [
-            {
-                "Tool": "Jupyter Lab",
-                "Version": jup_ver
-            }
-        ]
-    },
+    # {
+    #     "Technology": "Jupyter",
+    #     "Tools": [
+    #         {
+    #             "Tool": "Jupyter Lab",
+    #             "Version": jup_ver
+    #         }
+    #     ]
+    # },
     {
         "Technology": "Kubernetes",
         "Tools": [

@@ -1,5 +1,7 @@
 FROM mcr.microsoft.com/devcontainers/python:3.10-bullseye
 
+ARG username=vscode
+
 # Set default shell for RUN commands to bash
 SHELL ["/bin/bash", "-c"]
 
@@ -18,9 +20,9 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 RUN xargs -r -L1 -a /opt/sredevcontainer/packages_github.txt bash /opt/sredevcontainer/install_from_github.sh
 
 # Set up shell profiles
-RUN sudo -u user mkdir -p /home/user/.config/powershell && \
-    sudo -u user echo "python3 /opt/sredevcontainer/check_for_updates.py" >> /home/user/.zshrc && \
-    sudo -u user echo "Start-Process -FilePath 'python3' -ArgumentList '/opt/sredevcontainer/check_for_updates.py' -Wait | Write-Warning" > /home/user/.config/powershell/profile.ps1
+RUN sudo -u ${username} mkdir -p /home/${username}/.config/powershell && \
+    sudo -u ${username} echo "python3 /opt/sredevcontainer/check_for_updates.py" >> /home/${username}/.zshrc && \
+    sudo -u ${username} echo "Start-Process -FilePath 'python3' -ArgumentList '/opt/sredevcontainer/check_for_updates.py' -Wait | Write-Warning" > /home/${username}/.config/powershell/profile.ps1
 
 # Install Python packages
 RUN pip3 --no-cache-dir install --upgrade pip && \

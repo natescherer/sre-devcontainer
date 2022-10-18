@@ -16,11 +16,11 @@
 		"ghcr.io/devcontainers/features/aws-cli": {
 			"version": "latest"
 		},
-		"azure-cli": "latest",
-		"github-cli": "latest",
-		"jupyterlab": "latest",
-		"kubectl-helm-minikube": "latest",
-		"sshd": "latest",
-		"terraform": "latest"
+		// "azure-cli": "latest",
+		// "github-cli": "latest",
+		// "jupyterlab": "latest",
+		// "kubectl-helm-minikube": "latest",
+		// "sshd": "latest",
+		// "terraform": "latest"
 	}
 }

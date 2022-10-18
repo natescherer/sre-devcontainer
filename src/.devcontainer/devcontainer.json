@@ -2,19 +2,23 @@
 	"name": "SRE",
 	"build": {
 		"dockerfile": "Dockerfile",
-		"context": ".."
+		"context": ".",
+		"args": {
+			"IMAGE_NAME": "mcr.microsoft.com/devcontainers/python",
+			"IMAGE_TAG": "3.10-bullseye",
+			"NONROOT_USER": "vscode"
+		}
 	},
-
 	"remoteUser": "vscode",
 	"features": {
 		"ghcr.io/devcontainers/features/aws-cli": {
 			"version": "latest"
 		},
-		"ghcr.io/devcontainers/features/python:1": {
-			"version": "none",
-			"installTools": false,
-			"installJupyterlab": true
-		},
+		// "ghcr.io/devcontainers/features/python:1": {
+		// 	"version": "none",
+		// 	"installTools": false,
+		// 	"installJupyterlab": true
+		// },
 		"ghcr.io/devcontainers/features/powershell:1": {
 			"version": "latest"
 		},

@@ -1,17 +1,14 @@
-FROM mcr.microsoft.com/devcontainers/python:3.10-bullseye
-
-ARG username=vscode
+FROM ${IMAGE_NAME}:${IMAGE_TAG}
 
 # Set default shell for RUN commands to bash
 SHELL ["/bin/bash", "-c"]
 
 # Copy support files into image
-COPY .devcontainer/library/* /opt/sredevcontainer/
+COPY library/* /opt/sredevcontainer/
 
 # # Install apt software
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt update && \
-    bash /opt/sredevcontainer/powershell-debian.sh && \
     xargs -r -L1 -a /opt/sredevcontainer/packages_apt.txt apt install -y && \
     rm -rf /var/lib/apt/lists/* && \
     unset DEBIAN_FRONTEND
@@ -20,9 +17,9 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 RUN xargs -r -L1 -a /opt/sredevcontainer/packages_github.txt bash /opt/sredevcontainer/install_from_github.sh
 
 # Set up shell profiles
-RUN sudo -u ${username} mkdir -p /home/${username}/.config/powershell && \
-    sudo -u ${username} echo "python3 /opt/sredevcontainer/check_for_updates.py" >> /home/${username}/.zshrc && \
-    sudo -u ${username} echo "Start-Process -FilePath 'python3' -ArgumentList '/opt/sredevcontainer/check_for_updates.py' -Wait | Write-Warning" > /home/${username}/.config/powershell/profile.ps1
+RUN sudo -u ${NONROOT_USER} mkdir -p /home/${NONROOT_USER}/.config/powershell && \
+    sudo -u ${NONROOT_USER} echo "python3 /opt/sredevcontainer/check_for_updates.py" >> /home/${NONROOT_USER}/.zshrc && \
+    sudo -u ${NONROOT_USER} echo "Start-Process -FilePath 'python3' -ArgumentList '/opt/sredevcontainer/check_for_updates.py' -Wait | Write-Warning" > /home/${NONROOT_USER}/.config/powershell/profile.ps1
 
 # Install Python packages
 RUN pip3 --no-cache-dir install --upgrade pip && \

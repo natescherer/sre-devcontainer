@@ -5,11 +5,11 @@
 		"context": ".."
 	},
 
-	"remoteUser": "user",
+	"remoteUser": "devcontainer",
 	"features": {
 		"ghcr.io/devcontainers/features/common-utils": {
 			"version": "latest",
-			"username": "user",
+			"username": "devcontainer",
 			"uid": "1000",
 			"gid": "1000"
 		},

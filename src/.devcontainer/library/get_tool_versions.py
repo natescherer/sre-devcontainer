@@ -172,11 +172,11 @@ output_data = [
     {
         "Technology": "Azure",
         "Tools": [
-            {
-                "Tool": "Az PowerShell Module",
-                "Version": [x for x in pwsh_modules
-                            if x["Tool"] == "Az"][0]["Version"]
-            },
+            # {
+            #     "Tool": "Az PowerShell Module",
+            #     "Version": [x for x in pwsh_modules
+            #                 if x["Tool"] == "Az"][0]["Version"]
+            # },
             {
                 "Tool": "Azure CLI",
                 "Version": az_ver

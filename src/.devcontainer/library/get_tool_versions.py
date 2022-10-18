@@ -39,12 +39,12 @@ gh_ver = gh_raw.splitlines()[0].split(" (")[0].split(" ")[-1]
 
 
 # Jupyter
-jup_raw = subprocess.run(
-    ["jupyter", "lab", "--version"],
-    check=True,
-    stdout=subprocess.PIPE
-).stdout.decode("utf-8")
-jup_ver = jup_raw.splitlines()[0]
+# jup_raw = subprocess.run(
+#     ["jupyter", "lab", "--version"],
+#     check=True,
+#     stdout=subprocess.PIPE
+# ).stdout.decode("utf-8")
+# jup_ver = jup_raw.splitlines()[0]
 
 
 # Kubernetes

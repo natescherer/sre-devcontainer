@@ -131,16 +131,6 @@ for pkg in pip_array:
     })
 
 
-# SSH
-ssh_raw = subprocess.run(
-    ["ssh", "-V"],
-    check=True,
-    stdout=subprocess.PIPE,
-    stderr=subprocess.PIPE
-).stderr.decode("utf-8")
-ssh_ver = ssh_raw.splitlines()[0].split("_")[1].split(" ")[0]
-
-
 # Terraform
 tf_raw = subprocess.run(
     ["terraform", "-version"],
@@ -270,19 +260,6 @@ output_data = [
     {
         "Technology": "Python Packages",
         "Tools": py_packages
-    },
-    {
-        "Technology": "SSH",
-        "Tools": [
-            {
-                "Tool": "OpenSSH Client",
-                "Version": ssh_ver
-            },
-            {
-                "Tool": "OpenSSH Server",
-                "Version": ssh_ver
-            }
-        ]
     },
     {
         "Technology": "Terraform",

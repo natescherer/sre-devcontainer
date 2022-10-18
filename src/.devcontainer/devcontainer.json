@@ -5,22 +5,33 @@
 		"context": ".."
 	},
 
-	"remoteUser": "devcontainer",
+	"remoteUser": "vscode",
 	"features": {
-		"ghcr.io/devcontainers/features/common-utils": {
-			"version": "latest",
-			"username": "devcontainer",
-			"uid": "1000",
-			"gid": "1000"
-		},
 		"ghcr.io/devcontainers/features/aws-cli": {
 			"version": "latest"
 		},
-		// "azure-cli": "latest",
-		// "github-cli": "latest",
-		// "jupyterlab": "latest",
-		// "kubectl-helm-minikube": "latest",
-		// "sshd": "latest",
-		// "terraform": "latest"
+		"ghcr.io/devcontainers/features/python:1": {
+			"version": "none",
+			"installJupyterlab": true
+		},
+		"ghcr.io/devcontainers/features/powershell:1": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/azure-cli:1": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/github-cli:1": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
+			"version": "latest",
+			"helm": "latest",
+			"minikube": "none"
+		},
+		"ghcr.io/devcontainers/features/terraform:1": {
+			"version": "latest",
+			"tflint": "latest",
+			"terragrunt": "latest"
+		}
 	}
 }

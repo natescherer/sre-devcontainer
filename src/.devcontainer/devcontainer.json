@@ -4,7 +4,6 @@
 		"dockerfile": "Dockerfile",
 		"context": ".",
 		"args": {
-			"IMAGE_NAME": "mcr.microsoft.com/devcontainers/python:3.10-bullseye",
 			"NONROOT_USER": "vscode"
 		}
 	},

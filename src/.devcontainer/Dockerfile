@@ -1,4 +1,4 @@
-FROM $IMAGE_NAME
+FROM mcr.microsoft.com/devcontainers/python:3.10-bullseye
 
 # Set default shell for RUN commands to bash
 SHELL ["/bin/bash", "-c"]

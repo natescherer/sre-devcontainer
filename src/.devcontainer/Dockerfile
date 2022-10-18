@@ -1,4 +1,4 @@
-FROM ${IMAGE_NAME}:${IMAGE_TAG}
+FROM $IMAGE
 
 # Set default shell for RUN commands to bash
 SHELL ["/bin/bash", "-c"]

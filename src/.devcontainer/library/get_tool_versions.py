@@ -244,10 +244,10 @@ output_data = [
             }
         ]
     },
-    {
-        "Technology": "PowerShell Modules",
-        "Tools": pwsh_modules
-    },
+    # {
+    #     "Technology": "PowerShell Modules",
+    #     "Tools": pwsh_modules
+    # },
     {
         "Technology": "Python",
         "Tools": [

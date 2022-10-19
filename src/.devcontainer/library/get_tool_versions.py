@@ -95,15 +95,15 @@ pwsh_ver = pwsh_raw.splitlines()[0].split(" ")[1]
 
 
 # PowerShell Modules
-# pwsh_modules_json = subprocess.run(
-#     ["pwsh", "-NoProfile", "-c", "Get-InstalledModule | "
-#      "Select-Object @{Name='Tool';Expression={$_.Name}},Version | "
-#      "Sort-Object Tool | ConvertTo-Json"
-#      ],
-#     check=True,
-#     stdout=subprocess.PIPE
-# ).stdout.decode("utf-8")
-# pwsh_modules = json.loads(pwsh_modules_json)
+pwsh_modules_json = subprocess.run(
+    ["pwsh", "-NoProfile", "-c", "Get-InstalledModule | "
+     "Select-Object @{Name='Tool';Expression={$_.Name}},Version | "
+     "Sort-Object Tool | ConvertTo-Json"
+     ],
+    check=True,
+    stdout=subprocess.PIPE
+).stdout.decode("utf-8")
+pwsh_modules = json.loads(pwsh_modules_json)
 
 
 # Python
@@ -172,11 +172,11 @@ output_data = [
     {
         "Technology": "Azure",
         "Tools": [
-            # {
-            #     "Tool": "Az PowerShell Module",
-            #     "Version": [x for x in pwsh_modules
-            #                 if x["Tool"] == "Az"][0]["Version"]
-            # },
+            {
+                "Tool": "Az PowerShell Module",
+                "Version": [x for x in pwsh_modules
+                            if x["Tool"] == "Az"][0]["Version"]
+            },
             {
                 "Tool": "Azure CLI",
                 "Version": az_ver
@@ -244,10 +244,10 @@ output_data = [
             }
         ]
     },
-    # {
-    #     "Technology": "PowerShell Modules",
-    #     "Tools": pwsh_modules
-    # },
+    {
+        "Technology": "PowerShell Modules",
+        "Tools": pwsh_modules
+    },
     {
         "Technology": "Python",
         "Tools": [

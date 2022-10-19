@@ -17,9 +17,12 @@
 		// 	"installTools": false,
 		// 	"installJupyterlab": true
 		// },
-		// "ghcr.io/devcontainers/features/powershell:1": {
-		// 	"version": "latest"
-		// },
+		"ghcr.io/devcontainers/features/powershell:1": {
+			"version": "latest"
+		},
+		"ghcr.io/natescherer/devcontainers-custom-features/powershell-resources:0.1.0": {
+			"requiredResourceFile": "/opt/sredevcontainer/PowerShellResources.json"
+		},
 		"ghcr.io/devcontainers/features/azure-cli:1": {
 			"version": "latest"
 		},

@@ -27,7 +27,7 @@ steps:
   displayName: Set up QEMU
 - script: docker buildx create --use
   displayName: Set up docker buildx
-- task: NSDevcontainersCi@0
+- task: ci@0.2.5
   inputs:
     subFolder: src
     imageName: natescherer/sre-devcontainer

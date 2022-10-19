@@ -19,8 +19,6 @@ steps:
   inputs:
     command: login
     containerRegistry: Docker Hub
-- script: curl -o ./src/.devcontainer/library/powershell-debian.sh https://raw.githubusercontent.com/microsoft/vscode-dev-containers/main/script-library/powershell-debian.sh
-  displayName: Download PowerShell install script
 - script: echo $DEVCONTAINER_VERSION > ./src/.devcontainer/library/VERSION
   displayName: Create VERSION file
   env:
@@ -33,4 +31,6 @@ steps:
   inputs:
     subFolder: src
     imageName: natescherer/sre-devcontainer
+    cacheFrom: natescherer/sre-devcontainer:latest
+    platform: linux/amd64,linux/arm64
     runCmd: python /opt/sredevcontainer/get_tool_versions.py

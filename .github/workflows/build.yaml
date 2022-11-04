@@ -42,20 +42,20 @@ jobs:
         uses: docker/setup-buildx-action@v1
         with:
           use: true
-      # - name: Build and release devcontainer Single-Platform
-      #   uses: natescherer/devcontainers-ci@feature/multiple-architectures
-      #   with:
-      #     subFolder: src
-      #     imageName: ghcr.io/natescherer/sre-devcontainer
-      #     cacheFrom: ghcr.io/natescherer/sre-devcontainer:latest
-      #     runCmd: python /opt/sredevcontainer/get_tool_versions.py
-      - name: Build and release devcontainer Multi-Platform
+      - name: Build and release devcontainer Single-Platform
         uses: natescherer/devcontainers-ci@feature/multiple-architectures
         with:
           subFolder: src
           imageName: ghcr.io/natescherer/sre-devcontainer
           cacheFrom: ghcr.io/natescherer/sre-devcontainer:latest
-          platform: linux/amd64,linux/arm64
+          runCmd: python /opt/sredevcontainer/get_tool_versions.py
+      # - name: Build and release devcontainer Multi-Platform
+      #   uses: natescherer/devcontainers-ci@feature/multiple-architectures
+      #   with:
+      #     subFolder: src
+      #     imageName: ghcr.io/natescherer/sre-devcontainer
+      #     cacheFrom: ghcr.io/natescherer/sre-devcontainer:latest
+      #     platform: linux/amd64,linux/arm64
           # runCmd: python /opt/sredevcontainer/get_tool_versions.py
       # - name: Write version info to file
       #   uses: devops-actions/json-to-file@v1.0.0

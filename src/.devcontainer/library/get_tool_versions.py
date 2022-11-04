@@ -96,7 +96,7 @@ pwsh_ver = pwsh_raw.splitlines()[0].split(" ")[1]
 
 # PowerShell Modules
 pwsh_modules_json = subprocess.run(
-    ["pwsh", "-NoProfile", "-c", "Get-InstalledModule | "
+    ["pwsh", "-NoProfile", "-c", "Get-PSResource -Scope AllUsers | "
      "Select-Object @{Name='Tool';Expression={$_.Name}},Version | "
      "Sort-Object Tool | ConvertTo-Json"
      ],

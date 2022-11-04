@@ -20,7 +20,7 @@
 		"ghcr.io/devcontainers/features/powershell:1": {
 			"version": "latest"
 		},
-		"ghcr.io/natescherer/devcontainers-custom-features/powershell-resources:0.1.0": {
+		"https://dl.cloudsmith.io/public/natescherer/devcontainers-custom-features/raw/files/devcontainer-feature-powershell-resources.tgz": {
 			"requiredResourceFile": "/opt/sredevcontainer/PowerShellResources.json"
 		},
 		"ghcr.io/devcontainers/features/azure-cli:1": {

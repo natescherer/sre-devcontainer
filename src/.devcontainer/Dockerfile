@@ -25,9 +25,5 @@ COPY library/* /opt/sredevcontainer/
 # RUN pip3 --no-cache-dir install --upgrade pip && \
 #     pip3 --no-cache-dir install -r /opt/sredevcontainer/requirements.txt
 
-# Install PowerShell modules
-# RUN pwsh -c "Set-PSRepository -Name PSGallery -InstallationPolicy Trusted" && \
-#     pwsh -c "Install-Module -Name (Get-Content /opt/sredevcontainer/requirements_pwsh.txt) -Scope AllUsers"
-
 # Suppress Azure CLI noise
 ENV AZSURVEYMESSAGE=false

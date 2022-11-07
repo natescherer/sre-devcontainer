@@ -9,9 +9,7 @@
 	},
 	"remoteUser": "vscode",
 	"features": {
-		"ghcr.io/devcontainers/features/aws-cli": {
-			"version": "latest"
-		},
+		// Scripting Features
 		// "ghcr.io/devcontainers/features/python:1": {
 		// 	"version": "none",
 		// 	"installTools": false,
@@ -23,21 +21,47 @@
 		"ghcr.io/natescherer/devcontainers-custom-features/powershell-resources:1": {
 			"requiredResourceJsonFile": "/opt/sredevcontainer/PowerShellResources.json"
 		},
+		"ghcr.io/guiyomh/features/vim:0": {
+			"version": "latest"
+		},
+		// AWS Features
+		"ghcr.io/devcontainers/features/aws-cli": {
+			"version": "latest"
+		},
+		// Azure Features
 		"ghcr.io/devcontainers/features/azure-cli:1": {
 			"version": "latest"
 		},
-		"ghcr.io/devcontainers/features/github-cli:1": {
+		"ghcr.io/rchaganti/vsc-devcontainer-features/azurebicep:1": {
 			"version": "latest"
-		},
-		"ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
-			"version": "latest",
-			"helm": "latest",
-			"minikube": "none"
 		},
 		"ghcr.io/devcontainers/features/terraform:1": {
 			"version": "latest",
 			"tflint": "latest",
 			"terragrunt": "latest"
+		},
+		// GCP Features
+		"ghcr.io/dhoeric/features/google-cloud-cli:1": {
+			"version": "latest"
+		},
+		// Code Deployment Features
+		"ghcr.io/devcontainers/features/github-cli:1": {
+			"version": "latest"
+		},
+		// Container Features
+		"ghcr.io/devcontainers/features/docker-in-docker:1": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
+			"version": "latest",
+			"helm": "latest",
+			"minikube": "latest"
+		},
+		"ghcr.io/devcontainers-contrib/features/kubie:1": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers-contrib/features/kubectx-kubens:1": {
+			"version": "latest"
 		}
 	}
 }

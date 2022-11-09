@@ -55,12 +55,12 @@ helm_raw = subprocess.run(
 ).stdout.decode("utf-8")
 helm_ver = helm_raw.splitlines()[0].split("Version:\"v")[1].split("\"")[0]
 
-# k9s_raw = subprocess.run(
-#     ["k9s", "version", "-s"],
-#     check=True,
-#     stdout=subprocess.PIPE
-# ).stdout.decode("utf-8")
-# k9s_ver = k9s_raw.splitlines()[0].split(" ")[-1]
+k9s_raw = subprocess.run(
+    ["k9s", "version", "-s"],
+    check=True,
+    stdout=subprocess.PIPE
+).stdout.decode("utf-8")
+k9s_ver = k9s_raw.splitlines()[0].split(" ")[-1]
 
 kubectl_raw = subprocess.run(
     ["kubectl", "version", "--short"],
@@ -70,19 +70,19 @@ kubectl_raw = subprocess.run(
 ).stdout.decode("utf-8")
 kubectl_ver = kubectl_raw.splitlines()[0].split(" v")[1]
 
-# kubectx_raw = subprocess.run(
-#     ["kubectx", "--version"],
-#     check=True,
-#     stdout=subprocess.PIPE
-# ).stdout.decode("utf-8")
-# kubectx_ver = kubectx_raw.splitlines()[0]
+kubectx_raw = subprocess.run(
+    ["kubectx", "--version"],
+    check=True,
+    stdout=subprocess.PIPE
+).stdout.decode("utf-8")
+kubectx_ver = kubectx_raw.splitlines()[0]
 
-# kubens_raw = subprocess.run(
-#     ["kubens", "--version"],
-#     check=True,
-#     stdout=subprocess.PIPE
-# ).stdout.decode("utf-8")
-# kubens_ver = kubens_raw.splitlines()[0]
+kubens_raw = subprocess.run(
+    ["kubens", "--version"],
+    check=True,
+    stdout=subprocess.PIPE
+).stdout.decode("utf-8")
+kubens_ver = kubens_raw.splitlines()[0]
 
 
 # PowerShell
@@ -217,22 +217,22 @@ output_data = [
                 "Tool": "Helm",
                 "Version": helm_ver
             },
-            # {
-            #     "Tool": "k9s",
-            #     "Version": k9s_ver
-            # },
+            {
+                "Tool": "k9s",
+                "Version": k9s_ver
+            },
             {
                 "Tool": "kubectl",
                 "Version": kubectl_ver
             },
-            # {
-            #     "Tool": "kubectx",
-            #     "Version": kubectx_ver
-            # },
-            # {
-            #     "Tool": "kubens",
-            #     "Version": kubens_ver
-            # }
+            {
+                "Tool": "kubectx",
+                "Version": kubectx_ver
+            },
+            {
+                "Tool": "kubens",
+                "Version": kubens_ver
+            }
         ]
     },
     {

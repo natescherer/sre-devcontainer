@@ -62,6 +62,9 @@
 		},
 		"ghcr.io/devcontainers-contrib/features/kubectx-kubens:1": {
 			"version": "latest"
+		},
+		"https://dl.cloudsmith.io/public/natescherer/devcontainers-custom-features/raw/files/devcontainer-feature-k9s.tgz": {
+			"version": "latest"
 		}
 	}
 }

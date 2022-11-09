@@ -13,9 +13,6 @@ COPY library/* /opt/sredevcontainer/
 #     rm -rf /var/lib/apt/lists/* && \
 #     unset DEBIAN_FRONTEND
 
-# Install GitHub software
-# RUN xargs -r -L1 -a /opt/sredevcontainer/packages_github.txt bash /opt/sredevcontainer/install_from_github.sh
-
 # Set up shell profiles
 # RUN sudo -u ${NONROOT_USER} mkdir -p /home/${NONROOT_USER}/.config/powershell && \
 #     sudo -u ${NONROOT_USER} echo "python3 /opt/sredevcontainer/check_for_updates.py" >> /home/${NONROOT_USER}/.zshrc && \

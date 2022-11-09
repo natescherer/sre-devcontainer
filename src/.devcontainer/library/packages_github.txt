@@ -1,3 +1,0 @@
---repo ahmetb/kubectx --filename-template kubectx_vVERSION_linux_ARCH.tar.gz --version latest --dest-folder /opt/kubectx --binary-name kubectx
---repo ahmetb/kubectx --filename-template kubens_vVERSION_linux_ARCH.tar.gz --version latest --dest-folder /opt/kubens/ --binary-name kubens
---repo derailed/k9s --filename-template k9s_Linux_ARCH.tar.gz --version latest --dest-folder /opt/k9s --binary-name k9s

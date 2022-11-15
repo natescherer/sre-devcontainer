@@ -6,13 +6,6 @@ SHELL ["/bin/bash", "-c"]
 # Copy support files into image
 COPY library/* /opt/sredevcontainer/
 
-# # Install apt software
-# RUN export DEBIAN_FRONTEND=noninteractive && \
-#     apt update && \
-#     xargs -r -L1 -a /opt/sredevcontainer/packages_apt.txt apt install -y && \
-#     rm -rf /var/lib/apt/lists/* && \
-#     unset DEBIAN_FRONTEND
-
 # Set up shell profiles
 # RUN sudo -u ${NONROOT_USER} mkdir -p /home/${NONROOT_USER}/.config/powershell && \
 #     sudo -u ${NONROOT_USER} echo "python3 /opt/sredevcontainer/check_for_updates.py" >> /home/${NONROOT_USER}/.zshrc && \

@@ -54,7 +54,7 @@ output_data = [
             {
                 "Tool": "Azure CLI",
                 "Version": get_tool_version(
-                    ["az", "--version", "--only-show-errors"], 
+                    ["az", "--version", "--only-show-errors"],
                     r"azure-cli\s*(\d+\.\d+\.\d+)")
             }
         ]
@@ -98,7 +98,7 @@ output_data = [
             {
                 "Tool": "kubectl",
                 "Version": get_tool_version(
-                    ["kubectl", "version", "--short"],
+                    ["kubectl", "version", "--client"],
                     r"Client Version: v(\d+\.\d+\.\d+)")
             },
             {

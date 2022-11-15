@@ -1,119 +1,25 @@
 """Gets versions of tools that are part of the SRE devcontainer"""
-import subprocess
 import json
-
-# AWS
-aws_raw = subprocess.run(
-    ["aws", "--version"],
-    check=True,
-    stdout=subprocess.PIPE
-).stdout.decode("utf-8")
-aws_ver = aws_raw.splitlines()[0].split(" ")[0].split("/")[1]
+import re
+import subprocess
+from shutil import which
 
 
-# Azure
-az_raw = subprocess.run(
-    ["az", "--version", "--only-show-errors"],
-    check=True,
-    stdout=subprocess.PIPE
-).stdout.decode("utf-8")
-az_ver = az_raw.splitlines()[0].split(" ")[-1]
+def get_tool_version(command, regex):
+    """Gets a version of a command line tool"""
+    version = "Not Found"
+    if which(command[0]):
+        command_output = subprocess.check_output(command).decode()
+        version = re.findall(regex, command_output)[0]
+    else:
+        print(f"'{command[0]}' not found")
+    return version
 
-
-# Git
-git_raw = subprocess.run(
-    ["git", "--version"],
-    check=True,
-    stdout=subprocess.PIPE
-).stdout.decode("utf-8")
-git_ver = git_raw.splitlines()[0].split(" ")[-1]
-
-
-# GitHub
-gh_raw = subprocess.run(
-    ["gh", "--version"],
-    check=True,
-    stdout=subprocess.PIPE
-).stdout.decode("utf-8")
-gh_ver = gh_raw.splitlines()[0].split(" (")[0].split(" ")[-1]
-
-
-# Jupyter
-# jup_raw = subprocess.run(
-#     ["jupyter", "lab", "--version"],
-#     check=True,
-#     stdout=subprocess.PIPE
-# ).stdout.decode("utf-8")
-# jup_ver = jup_raw.splitlines()[0]
-
-
-# Kubernetes
-# helm_raw = subprocess.run(
-#     ["helm", "version"],
-#     check=True,
-#     stdout=subprocess.PIPE
-# ).stdout.decode("utf-8")
-# helm_ver = helm_raw.splitlines()[0].split("Version:\"v")[1].split("\"")[0]
-
-# kubectl_raw = subprocess.run(
-#     ["kubectl", "version", "--short"],
-#     check=False,
-#     stdout=subprocess.PIPE,
-#     stderr=subprocess.DEVNULL
-# ).stdout.decode("utf-8")
-# kubectl_ver = kubectl_raw.splitlines()[0].split(" v")[1]
-
-kubectx_raw = subprocess.run(
-    ["kubectx", "--version"],
-    check=True,
-    stdout=subprocess.PIPE
-).stdout.decode("utf-8")
-kubectx_ver = kubectx_raw.splitlines()[0]
-
-kubens_raw = subprocess.run(
-    ["kubens", "--version"],
-    check=True,
-    stdout=subprocess.PIPE
-).stdout.decode("utf-8")
-kubens_ver = kubens_raw.splitlines()[0]
-
-k9s_raw = subprocess.run(
-    ["k9s", "version", "-s"],
-    check=True,
-    stdout=subprocess.PIPE
-).stdout.decode("utf-8")
-k9s_ver = k9s_raw.splitlines()[0].split(" ")[-1]
-
-
-# PowerShell
-pwsh_raw = subprocess.run(
-    ["pwsh", "--version"],
-    check=True,
-    stdout=subprocess.PIPE
-).stdout.decode("utf-8")
-pwsh_ver = pwsh_raw.splitlines()[0].split(" ")[1]
-
-
-# PowerShell Modules
-pwsh_modules_json = subprocess.run(
+# PowerShell Resources
+PWSH_RESOURCES = json.loads(subprocess.check_output(
     ["pwsh", "-NoProfile", "-c", "Get-PSResource -Scope AllUsers | "
-     "Select-Object @{Name='Tool';Expression={$_.Name}},Version | "
-     "Sort-Object Tool | ConvertTo-Json"
-     ],
-    check=True,
-    stdout=subprocess.PIPE
-).stdout.decode("utf-8")
-pwsh_modules = json.loads(pwsh_modules_json)
-
-
-# Python
-py_raw = subprocess.run(
-    ["python", "--version"],
-    check=True,
-    stdout=subprocess.PIPE
-).stdout.decode("utf-8")
-py_ver = py_raw.splitlines()[0].split(" ")[1]
-
+     "Select-Object @{Name='Resources';Expression={$_.Name}},Version | "
+     "Sort-Object Tool | ConvertTo-Json"]).decode())
 
 # Python Packages
 pip_json = subprocess.run(
@@ -126,33 +32,9 @@ pip_array = json.loads(pip_json)
 py_packages = []
 for pkg in pip_array:
     py_packages.append({
-        "Tool": pkg["name"],
+        "Package": pkg["name"],
         "Version": pkg["version"]
     })
-
-
-# Terraform
-tf_raw = subprocess.run(
-    ["terraform", "-version"],
-    check=True,
-    stdout=subprocess.PIPE
-).stdout.decode("utf-8")
-tf_ver = tf_raw.splitlines()[0].split(" v")[1]
-
-terragrunt_raw = subprocess.run(
-    ["terragrunt", "-v"],
-    check=True,
-    stdout=subprocess.PIPE
-).stdout.decode("utf-8")
-terragrunt_ver = terragrunt_raw.splitlines()[0].split(" v")[-1]
-
-tflint_raw = subprocess.run(
-    ["tflint", "-v"],
-    check=True,
-    stdout=subprocess.PIPE
-).stdout.decode("utf-8")
-tflint_ver = tflint_raw.splitlines()[0].split(" ")[-1]
-
 
 output_data = [
     {
@@ -160,26 +42,20 @@ output_data = [
         "Tools": [
             {
                 "Tool": "AWS CLI",
-                "Version": aws_ver
-            },
-            # {
-            #     "Tool": "boto3 Python Package",
-            #     "Version": [x for x in py_packages
-            #                 if x["Tool"] == "boto3"][0]["Version"]
-            # }
+                "Version": get_tool_version(
+                    ["aws", "--version"],
+                    r"aws-cli\/(\d+\.\d+\.\d+)")
+            }
         ]
     },
     {
         "Technology": "Azure",
         "Tools": [
             {
-                "Tool": "Az PowerShell Module",
-                "Version": [x for x in pwsh_modules
-                            if x["Tool"] == "Az"][0]["Version"]
-            },
-            {
                 "Tool": "Azure CLI",
-                "Version": az_ver
+                "Version": get_tool_version(
+                    ["az", "--version", "--only-show-errors"], 
+                    r"azure-cli\s*(\d+\.\d+\.\d+)")
             }
         ]
     },
@@ -188,7 +64,9 @@ output_data = [
         "Tools": [
             {
                 "Tool": "Git",
-                "Version": git_ver
+                "Version": get_tool_version(
+                    ["git", "--version"],
+                    r"git version (\d+\.\d+\.\d+)")
             }
         ]
     },
@@ -197,41 +75,55 @@ output_data = [
         "Tools": [
             {
                 "Tool": "GitHub CLI",
-                "Version": gh_ver
+                "Version": get_tool_version(
+                    ["gh", "--version"],
+                    r"gh version (\d+\.\d+\.\d+)")
             }
         ]
     },
-    # {
-    #     "Technology": "Jupyter",
-    #     "Tools": [
-    #         {
-    #             "Tool": "Jupyter Lab",
-    #             "Version": jup_ver
-    #         }
-    #     ]
-    # },
+    {
+        "Technology": "Jupyter",
+        "Tools": [
+            {
+                "Tool": "Jupyter Lab",
+                "Version": get_tool_version(
+                    ["jupyter", "lab", "--version"],
+                    r"(\d+\.\d+\.\d+)")
+            }
+        ]
+    },
     {
         "Technology": "Kubernetes",
         "Tools": [
-            # {
-            #     "Tool": "kubectl",
-            #     "Version": kubectl_ver
-            # },
-            # {
-            #     "Tool": "Helm",
-            #     "Version": helm_ver
-            # },
+            {
+                "Tool": "kubectl",
+                "Version": get_tool_version(
+                    ["kubectl", "version", "--short"],
+                    r"Client Version: v(\d+\.\d+\.\d+)")
+            },
+            {
+                "Tool": "Helm",
+                "Version": get_tool_version(
+                    ["helm", "version", "--short"],
+                    r"v(\d+\.\d+\.\d+)")
+            },
             {
                 "Tool": "k9s",
-                "Version": k9s_ver
+                "Version": get_tool_version(
+                    ["k9s", "version", "-s"],
+                    r"Version\s+v(\d+\.\d+\.\d+)")
             },
             {
                 "Tool": "kubectx",
-                "Version": kubectx_ver
+                "Version": get_tool_version(
+                    ["kubectx", "--version"],
+                    r"(\d+\.\d+\.\d+)")
             },
             {
                 "Tool": "kubens",
-                "Version": kubens_ver
+                "Version": get_tool_version(
+                    ["kubens", "--version"],
+                    r"(\d+\.\d+\.\d+)")
             }
         ]
     },
@@ -240,41 +132,51 @@ output_data = [
         "Tools": [
             {
                 "Tool": "PowerShell",
-                "Version": pwsh_ver
+                "Version": get_tool_version(
+                    ["pwsh", "--version"],
+                    r"PowerShell (\d+\.\d+\.\d+)")
             }
         ]
     },
     {
-        "Technology": "PowerShell Modules",
-        "Tools": pwsh_modules
+        "Technology": "PowerShell Resources",
+        "Tools": PWSH_RESOURCES
     },
     {
         "Technology": "Python",
         "Tools": [
             {
                 "Tool": "Python",
-                "Version": py_ver
+                "Version": get_tool_version(
+                    ["pwsh", "--version"],
+                    r"Python (\d+\.\d+\.\d+)")
             }
         ]
     },
-    # {
-    #     "Technology": "Python Packages",
-    #     "Tools": py_packages
-    # },
+    {
+        "Technology": "Python Packages",
+        "Tools": py_packages
+    },
     {
         "Technology": "Terraform",
         "Tools": [
             {
                 "Tool": "Terraform CLI",
-                "Version": tf_ver
+                "Version": get_tool_version(
+                    ["terraform", "-version"],
+                    r"(\d+\.\d+\.\d+)")
             },
             {
                 "Tool": "Terragrunt",
-                "Version": terragrunt_ver
+                "Version": get_tool_version(
+                    ["terragrunt", "-v"],
+                    r"(\d+\.\d+\.\d+)")
             },
             {
                 "Tool": "TFLint",
-                "Version": tflint_ver
+                "Version": get_tool_version(
+                    ["tflint", "-v"],
+                    r"(\d+\.\d+\.\d+)")
             }
         ]
     }

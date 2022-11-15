@@ -98,8 +98,8 @@ output_data = [
             {
                 "Tool": "kubectl",
                 "Version": get_tool_version(
-                    ["kubectl", "version", "--client"],
-                    r"Client Version: v(\d+\.\d+\.\d+)")
+                    ["kubectl", "version", "--client", "--output=yaml"],
+                    r"gitVersion: v(\d+\.\d+\.\d+)")
             },
             {
                 "Tool": "Helm",

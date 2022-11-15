@@ -15,26 +15,19 @@ def get_tool_version(command, regex):
         print(f"'{command[0]}' not found")
     return version
 
+
 # PowerShell Resources
-PWSH_RESOURCES = json.loads(subprocess.check_output(
+pwsh_resources = json.loads(subprocess.check_output(
     ["pwsh", "-NoProfile", "-c", "Get-PSResource -Scope AllUsers | "
      "Select-Object @{Name='Resources';Expression={$_.Name}},Version | "
      "Sort-Object Tool | ConvertTo-Json"]).decode())
 
 # Python Packages
-pip_json = subprocess.run(
-    ["pip3", "list", "--format", "json"],
-    check=False,
-    stdout=subprocess.PIPE,
-    stderr=subprocess.DEVNULL
-).stdout.decode("utf-8")
-pip_array = json.loads(pip_json)
-py_packages = []
-for pkg in pip_array:
-    py_packages.append({
-        "Package": pkg["name"],
-        "Version": pkg["version"]
-    })
+pip_output = subprocess.check_output(
+    ["pip3", "list", "--format", "json", "--disable-pip-version-check"]).decode()
+pip_array = json.loads(pip_output)
+py_packages = [{"Package": pkg["name"], "Version": pkg["version"]}
+               for pkg in pip_array]
 
 output_data = [
     {
@@ -140,7 +133,7 @@ output_data = [
     },
     {
         "Technology": "PowerShell Resources",
-        "Tools": PWSH_RESOURCES
+        "Tools": pwsh_resources
     },
     {
         "Technology": "Python",

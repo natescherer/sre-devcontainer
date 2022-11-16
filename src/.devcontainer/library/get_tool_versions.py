@@ -14,7 +14,7 @@ def get_tool_version(command, regex):
             version = re.findall(regex, command_output)[0]
         except IndexError:
             version = "Regex Error"
-            print(f"Regex error for '{command[0]}")
+            print(f"Regex error for '{command[0]}'")
     else:
         print(f"'{command[0]}' not found")
     return version
@@ -28,7 +28,7 @@ pwsh_resources = json.loads(subprocess.check_output(
      "Sort-Object Tool | ConvertTo-Json"]).decode())
 
 # Python Packages
-pip_output = subprocess.check_output(
+pip_output = subprocess.check_output( # pylint: disable=invalid-name
     ["pip3", "list", "--format", "json", "--disable-pip-version-check"]).decode()
 pip_array = json.loads(pip_output)
 py_packages = [{"Package": pkg["name"], "Version": pkg["version"]}
@@ -146,7 +146,7 @@ output_data = [
             {
                 "Tool": "Python",
                 "Version": get_tool_version(
-                    ["pwsh", "--version"],
+                    ["python", "--version"],
                     r"Python (\d+\.\d+\.\d+)")
             }
         ]
@@ -180,4 +180,7 @@ output_data = [
     }
 ]
 
-print(json.dumps(output_data))
+print(json.dumps(output_data, indent=4))
+
+with open("ToolVersions.json", "w", encoding="utf-8") as f:
+    json.dump(output_data, f, indent=4)

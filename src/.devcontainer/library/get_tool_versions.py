@@ -23,7 +23,8 @@ def get_tool_version(command, regex):
 # PowerShell Resources
 pwsh_resources = json.loads(subprocess.check_output(
     ["pwsh", "-NoProfile", "-c", "Get-PSResource -Scope AllUsers | "
-     "Select-Object @{Name='Resources';Expression={$_.Name}},Version | "
+     "Select-Object @{Name='Resources';Expression={$_.Name}}, "
+     "@{Name='Version';Expression={$_.Version.ToString()}} | "
      "Sort-Object Tool | ConvertTo-Json"]).decode())
 
 # Python Packages

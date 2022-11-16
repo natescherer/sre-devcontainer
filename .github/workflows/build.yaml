@@ -43,22 +43,33 @@ jobs:
         with:
           use: true
       - name: Build and release devcontainer Single-Platform
+        id: buildcontainer
         uses: natescherer/devcontainers-ci@feature/multiple-architectures
         with:
           subFolder: src
           imageName: ghcr.io/natescherer/sre-devcontainer
           runCmd: python /opt/sredevcontainer/get_tool_versions.py
       # - name: Build and release devcontainer Multi-Platform
+      #   id: buildcontainer
       #   uses: natescherer/devcontainers-ci@feature/multiple-architectures
       #   with:
       #     subFolder: src
       #     imageName: ghcr.io/natescherer/sre-devcontainer
       #     platform: linux/amd64,linux/arm64
           # runCmd: python /opt/sredevcontainer/get_tool_versions.py
-      # - name: Write version info to file
-      #   uses: devops-actions/json-to-file@v1.0.0
-      #   with:
-      #     json: ${{ steps.buildcontainer.outputs.runCmdOutput }}
-      #     filename: tool-versions.json
+      - name: Write version info to file
+        uses: devops-actions/json-to-file@v1.0.0
+        with:
+          json: ${{ steps.buildcontainer.outputs.runCmdOutput }}
+          filename: tool-versions.json
+      - name: Post Tool Versions as Check Run
+        uses: LouisBrunner/checks-action@v1.5.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: Tool Version Report
+          conclusion: neutral
+          output: |
+            {"summary": "Tool Version Report"}
+          output_text_description_file: tool-versions.json
       # # Figure out how to make a table here
       # - run: echo "${{ steps.buildcontainer.outputs.runCmdOutput }}"

@@ -10,7 +10,11 @@ def get_tool_version(command, regex):
     version = "Not Found"
     if which(command[0]):
         command_output = subprocess.check_output(command).decode()
-        version = re.findall(regex, command_output)[0]
+        try:
+            version = re.findall(regex, command_output)[0]
+        except IndexError:
+            version = "Regex Error"
+            print(f"Regex error for '{command[0]}")
     else:
         print(f"'{command[0]}' not found")
     return version

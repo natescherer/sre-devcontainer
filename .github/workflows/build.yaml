@@ -44,10 +44,11 @@ jobs:
           use: true
       - name: Build and release devcontainer Single-Platform
         id: buildcontainer
-        uses: natescherer/devcontainers-ci@feature/multiple-architectures
+        uses: natescherer/devcontainers-ci@feature/multiple-tags
         with:
           subFolder: src
           imageName: ghcr.io/natescherer/sre-devcontainer
+          imageTag: latest,${{ steps.gitversion.outputs.FullSemVer }}
           runCmd: python /opt/sredevcontainer/get_tool_versions.py
       # - name: Build and release devcontainer Multi-Platform
       #   id: buildcontainer

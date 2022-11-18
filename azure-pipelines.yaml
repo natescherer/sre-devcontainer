@@ -35,6 +35,6 @@ jobs:
     inputs:
       subFolder: src
       imageName: natescherer/sre-devcontainer
-      cacheFrom: natescherer/sre-devcontainer:latest
+      imageTag: latest,0.1.1
       platform: linux/amd64,linux/arm64
       # runCmd: python /opt/sredevcontainer/get_tool_versions.py

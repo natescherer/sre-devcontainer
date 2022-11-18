@@ -48,6 +48,7 @@ jobs:
         with:
           subFolder: src
           imageName: ghcr.io/natescherer/sre-devcontainer
+          imageTag: 0.1.4,testtag
           runCmd: python /opt/sredevcontainer/get_tool_versions.py
       # - name: Build and release devcontainer Multi-Platform
       #   id: buildcontainer

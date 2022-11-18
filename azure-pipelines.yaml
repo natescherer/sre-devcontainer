@@ -35,5 +35,4 @@ jobs:
     inputs:
       subFolder: src
       imageName: natescherer/sre-devcontainer
-      imageTag: 0.1.4
       # runCmd: python /opt/sredevcontainer/get_tool_versions.py

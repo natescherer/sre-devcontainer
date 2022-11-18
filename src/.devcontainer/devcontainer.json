@@ -18,9 +18,9 @@
 		"ghcr.io/devcontainers/features/powershell:1": {
 			"version": "latest"
 		},
-		"ghcr.io/natescherer/devcontainers-custom-features/powershell-resources:1": {
-			"requiredResourceJsonFile": "/opt/sredevcontainer/PowerShellResources.json"
-		},
+		// "ghcr.io/natescherer/devcontainers-custom-features/powershell-resources:1": {
+		// 	"requiredResourceJsonFile": "/opt/sredevcontainer/PowerShellResources.json"
+		// },
 		"ghcr.io/guiyomh/features/vim:0": {
 			"version": "latest"
 		},

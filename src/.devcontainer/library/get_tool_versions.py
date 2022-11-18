@@ -28,7 +28,7 @@ pwsh_resources = json.loads(subprocess.check_output(
      "Sort-Object Tool | ConvertTo-Json"]).decode())
 
 # Python Packages
-pip_output = subprocess.check_output( # pylint: disable=invalid-name
+pip_output = subprocess.check_output(
     ["pip3", "list", "--format", "json", "--disable-pip-version-check"]).decode()
 pip_array = json.loads(pip_output)
 py_packages = [{"Package": pkg["name"], "Version": pkg["version"]}

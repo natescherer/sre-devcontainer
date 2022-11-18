@@ -57,7 +57,6 @@ jobs:
           subFolder: src
           imageName: ghcr.io/natescherer/sre-devcontainer
           platform: linux/amd64,linux/arm64
-          imageTag: ${{ steps.gitversion.outputs.FullSemVer }}
           runCmd: python /opt/sredevcontainer/get_tool_versions.py
       - name: Write version info to file
         uses: devops-actions/json-to-file@v1.0.0

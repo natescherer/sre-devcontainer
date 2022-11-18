@@ -21,18 +21,26 @@ def get_tool_version(command, regex):
 
 
 # PowerShell Resources
-pwsh_resources = json.loads(subprocess.check_output(
-    ["pwsh", "-NoProfile", "-c", "Get-PSResource -Scope AllUsers | "
-     "Select-Object @{Name='Resources';Expression={$_.Name}}, "
-     "@{Name='Version';Expression={$_.Version.ToString()}} | "
-     "Sort-Object Tool | ConvertTo-Json"]).decode())
+pwsh_resources = []
+try:
+    pwsh_resources = json.loads(subprocess.check_output(
+        ["pwsh", "-NoProfile", "-c", "Get-PSResource -Scope AllUsers | "
+        "Select-Object @{Name='Resources';Expression={$_.Name}}, "
+        "@{Name='Version';Expression={$_.Version.ToString()}} | "
+        "Sort-Object Tool | ConvertTo-Json"]).decode())
+except subprocess.CalledProcessError:
+    print("Error getting PowerShell resources.")
 
 # Python Packages
-pip_output = subprocess.check_output(
-    ["pip3", "list", "--format", "json", "--disable-pip-version-check"]).decode()
-pip_array = json.loads(pip_output)
-py_packages = [{"Package": pkg["name"], "Version": pkg["version"]}
-               for pkg in pip_array]
+py_packages = []
+try:
+    pip_output = subprocess.check_output(
+        ["pip3", "list", "--format", "json", "--disable-pip-version-check"]).decode()
+    pip_array = json.loads(pip_output)
+    py_packages = [{"Package": pkg["name"], "Version": pkg["version"]}
+                for pkg in pip_array]
+except subprocess.CalledProcessError:
+    print("Error getting Python packages.")
 
 output_data = [
     {

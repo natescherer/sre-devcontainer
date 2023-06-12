@@ -2,7 +2,9 @@
 
 This project builds a VSCode/GitHub Codespaces Dev Container optimized for Site Reliability Engineering workflows.
 
-This container is built upon Microsoft's [python-3](https://github.com/microsoft/vscode-dev-containers/tree/main/containers/python-3) container, meaning it is Debian 11 "bullseye" with support for x86-64 and arm64 (including Apple M-series processors).
+This is an alpha release oriented around my own personal needs. A more generalized container is coming soon.
+
+<!-- This container is built upon Microsoft's [python-3](https://github.com/microsoft/vscode-dev-containers/tree/main/containers/python-3) container, meaning it is Debian 11 "bullseye" with support for x86-64 and arm64 (including Apple M-series processors).
 
 The container includes tooling for the below technologies, sorted alphabetically:
 
@@ -51,7 +53,7 @@ The container includes tooling for the below technologies, sorted alphabetically
   - PowerShell (ms-vscode.powershell)
   - Pylance (ms-python.vscode-pylance)
   - Python (ms-python.python)
-  - YAML (redhat.vscode-yaml)
+  - YAML (redhat.vscode-yaml) -->
 
 ## Getting Started
 

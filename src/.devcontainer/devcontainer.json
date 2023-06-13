@@ -15,23 +15,26 @@
 		// 	"installTools": false,
 		// 	"installJupyterlab": true
 		// },
+		"https://dl.cloudsmith.io/public/natescherer/devcontainers-custom-features/raw/files/devcontainer-feature-python-packages.tgz": {
+			"requirementsFile": "/opt/sredevcontainer/requirements.txt"
+		},
 		"ghcr.io/devcontainers/features/powershell:1": {
 			"version": "latest"
 		},
-		// "ghcr.io/natescherer/devcontainers-custom-features/powershell-resources:1": {
-		// 	"requiredResourceJsonFile": "/opt/sredevcontainer/PowerShellResources.json"
-		// },
-		"ghcr.io/guiyomh/features/vim:0": {
-			"version": "latest"
+		"ghcr.io/natescherer/devcontainers-custom-features/powershell-resources:1": {
+			"requiredResourceJsonFile": "/opt/sredevcontainer/PowerShellResources.json"
 		},
+		// "ghcr.io/guiyomh/features/vim:0": {
+		// 	"version": "latest"
+		// },
 		// AWS Features
 		// "ghcr.io/devcontainers/features/aws-cli": {
 		// 	"version": "latest"
 		// },
 		// Azure Features
-		// "ghcr.io/devcontainers/features/azure-cli:1": {
-		// 	"version": "latest"
-		// },
+		"ghcr.io/devcontainers/features/azure-cli:1": {
+			"version": "latest"
+		},
 		// "ghcr.io/rchaganti/vsc-devcontainer-features/azurebicep:1": {
 		// 	"version": "latest"
 		// },
@@ -52,14 +55,14 @@
 		// "ghcr.io/devcontainers/features/docker-in-docker:1": {
 		// 	"version": "latest"
 		// },
-		// "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
-		// 	"version": "latest",
-		// 	"helm": "latest",
-		// 	"minikube": "latest"
-		// },
-		// "ghcr.io/devcontainers-contrib/features/kubie:1": {
-		// 	"version": "latest"
-		// },
+		"ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
+			"version": "none",
+			"helm": "latest",
+			"minikube": "none"
+		},
+		"ghcr.io/devcontainers-contrib/features/kubie:1": {
+			"version": "latest"
+		},
 		// Pulled until PR can be created to ACTUALLY install latest versions
 		// "ghcr.io/devcontainers-contrib/features/kubectx-kubens:1": {
 		// 	"version": "latest"

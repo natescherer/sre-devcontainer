@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/devcontainers/python:3.10-bullseye
+FROM mcr.microsoft.com/devcontainers/python:3.11-bullseye
 
 # Set default shell for RUN commands to bash
 SHELL ["/bin/bash", "-c"]

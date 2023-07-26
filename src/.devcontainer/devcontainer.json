@@ -22,6 +22,16 @@
 			"version": "latest",
 			"ppa": "false"
 		},
+		"ghcr.io/devcontainers-contrib/features/apt-get-packages": {
+			"packages": "build-essential,libssl-dev,zlib1g-dev,libbz2-dev,libreadline-dev,libsqlite3-dev,libncursesw5-dev,xz-utils,tk-dev,libxml2-dev,libxmlsec1-dev,libffi-dev,liblzma-dev"
+		},
+		"https://dl.cloudsmith.io/public/natescherer/devcontainers-custom-features/raw/files/devcontainer-feature-asdf-package.tgz": {
+			"plugin": "python:3.11 python:3.10 python:3.9 python:3.8 kubectl:1.25 kubectl:1.26 kubectl:1.27"
+		},
+		// Python dev features
+		"ghcr.io/devcontainers-contrib/features/cookiecutter:2": {},
+		"ghcr.io/devcontainers-contrib/features/poetry:2": {},
+		"ghcr.io/devcontainers-contrib/features/nox:2": {},
 		// Scripting Features
 		// "ghcr.io/devcontainers/features/python:1": {
 		// 	"version": "none",
@@ -85,6 +95,10 @@
 		}
 	},
 	"overrideFeatureInstallOrder": [
+		"ghcr.io/devcontainers/features/common-utils",
+		"ghcr.io/devcontainers/features/git",
+		"ghcr.io/devcontainers-contrib/features/apt-get-packages",
+		"https://dl.cloudsmith.io/public/natescherer/devcontainers-custom-features/raw/files/devcontainer-feature-asdf-package.tgz"
 
 	],
 	"onCreateCommand": "/opt/sredevcontainer/onCreate.sh",

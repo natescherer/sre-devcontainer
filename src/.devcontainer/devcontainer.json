@@ -4,11 +4,24 @@
 		"dockerfile": "Dockerfile",
 		"context": ".",
 		"args": {
-			"NONROOT_USER": "vscode"
+			"NONROOT_USER": "sre"
 		}
 	},
-	"remoteUser": "vscode",
+	"remoteUser": "sre",
 	"features": {
+		"ghcr.io/devcontainers/features/common-utils:2": {
+			"installZsh": "true",
+			"configureZshAsDefaultShell": "true",
+			"installOhMyZsh": "true",
+			"upgradePackages": "true",
+			"username": "sre",
+			"userUid": "1000",
+			"userGid": "1000"
+		},
+		"ghcr.io/devcontainers/features/git:1": {
+			"version": "latest",
+			"ppa": "false"
+		},
 		// Scripting Features
 		// "ghcr.io/devcontainers/features/python:1": {
 		// 	"version": "none",
@@ -70,5 +83,10 @@
 		"ghcr.io/natescherer/devcontainers-custom-features/k9s:1": {
 			"version": "latest"
 		}
-	}
+	},
+	"overrideFeatureInstallOrder": [
+
+	],
+	"onCreateCommand": "/opt/sredevcontainer/onCreate.sh",
+	"postAttachCommand": "/opt/sredevcontainer/postAttach.sh"
 }

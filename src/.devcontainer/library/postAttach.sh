@@ -1,0 +1,1 @@
+python /opt/sredevcontianer/check_for_updates.py

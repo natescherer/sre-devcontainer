@@ -1,0 +1,1 @@
+az config set core.survey_message=false

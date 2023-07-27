@@ -82,8 +82,7 @@
 	"overrideFeatureInstallOrder": [
 		"ghcr.io/devcontainers-contrib/features/apt-get-packages",
 		"https://dl.cloudsmith.io/public/natescherer/devcontainers-custom-features/raw/files/devcontainer-feature-asdf-package.tgz"
-
 	],
 	"onCreateCommand": "/opt/sredevcontainer/onCreate.sh",
-	"postAttachCommand": "/opt/sredevcontainer/postAttach.sh"
+	//"postAttachCommand": "/opt/sredevcontainer/postAttach.sh"
 }

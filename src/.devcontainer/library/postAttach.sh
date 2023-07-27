@@ -1,1 +1,1 @@
-python /opt/sredevcontianer/check_for_updates.py
+python /opt/sredevcontainer/check_for_updates.py

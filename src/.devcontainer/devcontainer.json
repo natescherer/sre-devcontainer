@@ -13,27 +13,25 @@
 			"packages": "libssl-dev,zlib1g-dev,libbz2-dev,libreadline-dev,libsqlite3-dev,libncursesw5-dev,xz-utils,tk-dev,libxml2-dev,libxmlsec1-dev,libffi-dev,liblzma-dev"
 		},
 		"https://dl.cloudsmith.io/public/natescherer/devcontainers-custom-features/raw/files/devcontainer-feature-asdf-package.tgz": {
-			"plugin": "python:3.11 python:3.10 python:3.9 python:3.8 kubectl:1.25 kubectl:1.26 kubectl:1.27"
+			// "plugin": "python:3.11 python:3.10 python:3.9 python:3.8 kubectl:1.25 kubectl:1.26 kubectl:1.27"
+			"plugin": "python:3.11 python:3.8 kubectl:1.25 kubectl:1.26 kubectl:1.27"
 		},
 		// Python dev features
-		"ghcr.io/devcontainers-contrib/features/cookiecutter:2": {},
-		"ghcr.io/devcontainers-contrib/features/poetry:2": {},
-		"ghcr.io/devcontainers-contrib/features/nox:2": {},
 		// Scripting Features
 		// "ghcr.io/devcontainers/features/python:1": {
 		// 	"version": "none",
 		// 	"installTools": false,
 		// 	"installJupyterlab": true
 		// },
-		"https://dl.cloudsmith.io/public/natescherer/devcontainers-custom-features/raw/files/devcontainer-feature-python-packages.tgz": {
-			"requirementsFile": "/opt/sredevcontainer/requirements.txt"
-		},
-		"ghcr.io/devcontainers/features/powershell:1": {
-			"version": "latest"
-		},
-		"ghcr.io/natescherer/devcontainers-custom-features/powershell-resources:1": {
-			"requiredResourceJsonFile": "/opt/sredevcontainer/PowerShellResources.json"
-		},
+		// "https://dl.cloudsmith.io/public/natescherer/devcontainers-custom-features/raw/files/devcontainer-feature-python-packages.tgz": {
+		// 	"requirementsFile": "/opt/sredevcontainer/requirements.txt"
+		// },
+		// "ghcr.io/devcontainers/features/powershell:1": {
+		// 	"version": "latest"
+		// },
+		// "ghcr.io/natescherer/devcontainers-custom-features/powershell-resources:1": {
+		// 	"requiredResourceJsonFile": "/opt/sredevcontainer/PowerShellResources.json"
+		// },
 		// "ghcr.io/guiyomh/features/vim:0": {
 		// 	"version": "latest"
 		// },
@@ -42,9 +40,9 @@
 		// 	"version": "latest"
 		// },
 		// Azure Features
-		"ghcr.io/devcontainers/features/azure-cli:1": {
-			"version": "latest"
-		},
+		// "ghcr.io/devcontainers/features/azure-cli:1": {
+		// 	"version": "latest"
+		// },
 		// "ghcr.io/rchaganti/vsc-devcontainer-features/azurebicep:1": {
 		// 	"version": "latest"
 		// },
@@ -65,21 +63,21 @@
 		// "ghcr.io/devcontainers/features/docker-in-docker:1": {
 		// 	"version": "latest"
 		// },
-		"ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
-			"version": "none",
-			"helm": "latest",
-			"minikube": "none"
-		},
-		"ghcr.io/devcontainers-contrib/features/kubie:1": {
-			"version": "latest"
-		},
+		// "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
+		// 	"version": "none",
+		// 	"helm": "latest",
+		// 	"minikube": "none"
+		// },
+		// "ghcr.io/devcontainers-contrib/features/kubie:1": {
+		// 	"version": "latest"
+		// },
 		// Pulled until PR can be created to ACTUALLY install latest versions
 		// "ghcr.io/devcontainers-contrib/features/kubectx-kubens:1": {
 		// 	"version": "latest"
 		// },
-		"ghcr.io/natescherer/devcontainers-custom-features/k9s:1": {
-			"version": "latest"
-		}
+		// "ghcr.io/natescherer/devcontainers-custom-features/k9s:1": {
+		// 	"version": "latest"
+		// }
 	},
 	"overrideFeatureInstallOrder": [
 		"ghcr.io/devcontainers-contrib/features/apt-get-packages",

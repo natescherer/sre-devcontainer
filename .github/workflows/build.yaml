@@ -50,6 +50,8 @@ jobs:
       - name: Build and release devcontainer Multi-Platform
         id: buildcontainer
         uses: devcontainers/ci@v0.3
+        env:
+          BUILDX_NO_DEFAULT_ATTESTATIONS: true
         with:
           subFolder: src
           imageName: ghcr.io/natescherer/sre-devcontainer

@@ -9,14 +9,17 @@
 	},
 	"remoteUser": "vscode",
 	"features": {
-		"ghcr.io/devcontainers-contrib/features/apt-get-packages": {
-			"packages": "libssl-dev,zlib1g-dev,libbz2-dev,libreadline-dev,libsqlite3-dev,libncursesw5-dev,xz-utils,tk-dev,libxml2-dev,libxmlsec1-dev,libffi-dev,liblzma-dev"
+		// "ghcr.io/devcontainers-contrib/features/apt-get-packages": {
+		// 	"packages": ""
+		// },
+		"https://dl.cloudsmith.io/public/natescherer/devcontainers-custom-features/raw/files/devcontainer-feature-hypermodern-python.tgz": {
+			"versions": "3.8 3.9 3.10 3.11",
+			"requirementsFile": "/opt/sredevcontainer/requirements.txt"
 		},
 		"https://dl.cloudsmith.io/public/natescherer/devcontainers-custom-features/raw/files/devcontainer-feature-asdf-package.tgz": {
 			// "plugin": "python:3.11 python:3.10 python:3.9 python:3.8 kubectl:1.25 kubectl:1.26 kubectl:1.27"
-			"plugin": "python:3.11 python:3.8 kubectl:1.25 kubectl:1.26 kubectl:1.27"
+			"plugin": "kubectl:1.25 kubectl:1.26 kubectl:1.27"
 		},
-		// Python dev features
 		// Scripting Features
 		// "ghcr.io/devcontainers/features/python:1": {
 		// 	"version": "none",
@@ -79,10 +82,8 @@
 		// 	"version": "latest"
 		// }
 	},
-	"overrideFeatureInstallOrder": [
-		"ghcr.io/devcontainers-contrib/features/apt-get-packages",
-		"https://dl.cloudsmith.io/public/natescherer/devcontainers-custom-features/raw/files/devcontainer-feature-asdf-package.tgz"
-	],
+	// "overrideFeatureInstallOrder": [
+	// ],
 	"onCreateCommand": "/opt/sredevcontainer/onCreate.sh",
 	//"postAttachCommand": "/opt/sredevcontainer/postAttach.sh"
 }

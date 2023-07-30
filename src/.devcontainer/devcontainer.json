@@ -44,7 +44,8 @@
 		// },
 		// Azure Features
 		"ghcr.io/devcontainers/features/azure-cli:1": {
-			"version": "latest"
+			"version": "latest",
+			"extensions": "acrquery,acrtransfer,automation,azure-devops,k8s-configuration,k8s-extension,kusto,log-analytics,redisenterprise,ssh,webapp"
 		},
 		// "ghcr.io/rchaganti/vsc-devcontainer-features/azurebicep:1": {
 		// 	"version": "latest"

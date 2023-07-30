@@ -32,9 +32,9 @@
 		// "ghcr.io/devcontainers/features/powershell:1": {
 		// 	"version": "latest"
 		// },
-		// "ghcr.io/natescherer/devcontainers-custom-features/powershell-resources:1": {
-		// 	"requiredResourceJsonFile": "/opt/sredevcontainer/PowerShellResources.json"
-		// },
+		"ghcr.io/natescherer/devcontainers-custom-features/powershell-resources:1": {
+			"requiredResourceJsonFile": "/opt/sredevcontainer/PowerShellResources.json"
+		},
 		// "ghcr.io/guiyomh/features/vim:0": {
 		// 	"version": "latest"
 		// },
@@ -66,24 +66,24 @@
 		// "ghcr.io/devcontainers/features/docker-in-docker:1": {
 		// 	"version": "latest"
 		// },
-		// "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
-		// 	"version": "none",
-		// 	"helm": "latest",
-		// 	"minikube": "none"
-		// },
-		// "ghcr.io/devcontainers-contrib/features/kubie:1": {
-		// 	"version": "latest"
-		// },
+		"ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
+			"version": "none",
+			"helm": "latest",
+			"minikube": "none"
+		},
+		"ghcr.io/devcontainers-contrib/features/kubie:1": {
+			"version": "latest"
+		},
 		// Pulled until PR can be created to ACTUALLY install latest versions
 		// "ghcr.io/devcontainers-contrib/features/kubectx-kubens:1": {
 		// 	"version": "latest"
 		// },
-		// "ghcr.io/natescherer/devcontainers-custom-features/k9s:1": {
-		// 	"version": "latest"
-		// }
+		"ghcr.io/natescherer/devcontainers-custom-features/k9s:1": {
+			"version": "latest"
+		}
 	},
 	// "overrideFeatureInstallOrder": [
 	// ],
 	"onCreateCommand": "/opt/sredevcontainer/onCreate.sh",
-	//"postAttachCommand": "/opt/sredevcontainer/postAttach.sh"
+	"postAttachCommand": "/opt/sredevcontainer/postAttach.sh"
 }

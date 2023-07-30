@@ -29,9 +29,9 @@
 		// "https://dl.cloudsmith.io/public/natescherer/devcontainers-custom-features/raw/files/devcontainer-feature-python-packages.tgz": {
 		// 	"requirementsFile": "/opt/sredevcontainer/requirements.txt"
 		// },
-		// "ghcr.io/devcontainers/features/powershell:1": {
-		// 	"version": "latest"
-		// },
+		"ghcr.io/devcontainers/features/powershell:1": {
+			"version": "latest"
+		},
 		"ghcr.io/natescherer/devcontainers-custom-features/powershell-resources:1": {
 			"requiredResourceJsonFile": "/opt/sredevcontainer/PowerShellResources.json"
 		},

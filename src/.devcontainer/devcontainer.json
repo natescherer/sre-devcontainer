@@ -86,5 +86,5 @@
 	// "overrideFeatureInstallOrder": [
 	// ],
 	"onCreateCommand": "/opt/sredevcontainer/onCreate.sh",
-	"postAttachCommand": "/opt/sredevcontainer/postAttach.sh"
+	//"postAttachCommand": "/opt/sredevcontainer/postAttach.sh"
 }

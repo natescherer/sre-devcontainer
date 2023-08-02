@@ -12,7 +12,7 @@
 		// "ghcr.io/devcontainers-contrib/features/apt-get-packages": {
 		// 	"packages": ""
 		// },
-		"https://dl.cloudsmith.io/public/natescherer/devcontainers-custom-features/raw/files/devcontainer-feature-hypermodern-python.tgz": {
+		"ghcr.io/natescherer/devcontainers-custom-features/hypermodern-python:1": {
 			"versions": "3.8 3.9 3.10 3.11",
 			"requirementsFile": "/opt/sredevcontainer/requirements.txt"
 		},

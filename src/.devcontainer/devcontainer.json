@@ -10,7 +10,7 @@
 	"remoteUser": "vscode",
 	"features": {
 		"ghcr.io/devcontainers-contrib/features/apt-get-packages:1": {
-			"packages": "iputils-ping,traceroute"
+			"packages": "iputils-ping,traceroute,dnsutils"
 		},
 		"ghcr.io/natescherer/devcontainers-custom-features/hypermodern-python:1": {
 			"versions": "REPLACED-BY-GH-ACTION",
@@ -19,53 +19,19 @@
 		"https://dl.cloudsmith.io/public/natescherer/devcontainers-custom-features/raw/files/devcontainer-feature-asdf-package.tgz": {
 			"plugin": "REPLACED-BY-GH-ACTION"
 		},
-		// Scripting Features
-		// "ghcr.io/devcontainers/features/python:1": {
-		// 	"version": "none",
-		// 	"installTools": false,
-		// 	"installJupyterlab": true
-		// },
-		// "https://dl.cloudsmith.io/public/natescherer/devcontainers-custom-features/raw/files/devcontainer-feature-python-packages.tgz": {
-		// 	"requirementsFile": "/opt/sredevcontainer/requirements.txt"
-		// },
 		"ghcr.io/devcontainers/features/powershell:1": {
 			"version": "latest"
 		},
 		"ghcr.io/natescherer/devcontainers-custom-features/powershell-resources:1": {
 			"requiredResourceJsonFile": "/opt/sredevcontainer/PowerShellResources.json"
 		},
-		// "ghcr.io/guiyomh/features/vim:0": {
-		// 	"version": "latest"
-		// },
-		// AWS Features
-		// "ghcr.io/devcontainers/features/aws-cli": {
-		// 	"version": "latest"
-		// },
-		// Azure Features
 		"ghcr.io/devcontainers/features/azure-cli:1": {
 			"version": "latest",
 			"extensions": "acrquery,acrtransfer,automation,azure-devops,k8s-configuration,k8s-extension,kusto,log-analytics,redisenterprise,ssh,webapp"
 		},
-		// "ghcr.io/rchaganti/vsc-devcontainer-features/azurebicep:1": {
-		// 	"version": "latest"
-		// },
-		// "ghcr.io/devcontainers/features/terraform:1": {
-		// 	"version": "latest",
-		// 	"tflint": "latest",
-		// 	"terragrunt": "latest"
-		// },
-		// GCP Features
-		// "ghcr.io/dhoeric/features/google-cloud-cli:1": {
-		// 	"version": "latest"
-		// },
-		// Code Deployment Features
-		// "ghcr.io/devcontainers/features/github-cli:1": {
-		// 	"version": "latest"
-		// },
-		// Container Features
-		// "ghcr.io/devcontainers/features/docker-in-docker:1": {
-		// 	"version": "latest"
-		// },
+		"ghcr.io/devcontainers/features/github-cli:1": {
+			"version": "latest"
+		},
 		"ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
 			"version": "none",
 			"helm": "latest",
@@ -80,13 +46,10 @@
 		"ghcr.io/natescherer/devcontainers-custom-features/k9s:1": {
 			"version": "latest"
 		},
-		// Custom Features
 		"ghcr.io/devcontainers-contrib/features/airplane-cli:1": {
 			"version": "latest"
 		}
 	},
-	// "overrideFeatureInstallOrder": [
-	// ],
 	"onCreateCommand": "/opt/sredevcontainer/onCreate.sh",
 	"postAttachCommand": "/opt/sredevcontainer/postAttach.sh"
 }

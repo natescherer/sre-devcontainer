@@ -25,9 +25,9 @@ pwsh_resources = []
 try:
     pwsh_resources = json.loads(subprocess.check_output(
         ["pwsh", "-NoProfile", "-c", "Get-PSResource -Scope AllUsers | "
-        "Select-Object @{Name='Resources';Expression={$_.Name}}, "
-        "@{Name='Version';Expression={$_.Version.ToString()}} | "
-        "Sort-Object Tool | ConvertTo-Json"]).decode())
+         "Select-Object @{Name='Resources';Expression={$_.Name}}, "
+         "@{Name='Version';Expression={$_.Version.ToString()}} | "
+         "Sort-Object Tool | ConvertTo-Json"]).decode())
 except subprocess.CalledProcessError:
     print("Error getting PowerShell resources.")
 
@@ -35,10 +35,10 @@ except subprocess.CalledProcessError:
 py_packages = []
 try:
     pip_output = subprocess.check_output(
-        ["pip3", "list", "--format", "json", "--disable-pip-version-check"]).decode()
+        ["pip", "list", "--format", "json", "--disable-pip-version-check"]).decode()
     pip_array = json.loads(pip_output)
     py_packages = [{"Package": pkg["name"], "Version": pkg["version"]}
-                for pkg in pip_array]
+                   for pkg in pip_array]
 except subprocess.CalledProcessError:
     print("Error getting Python packages.")
 
@@ -87,25 +87,25 @@ output_data = [
             }
         ]
     },
-    {
-        "Technology": "Jupyter",
-        "Tools": [
-            {
-                "Tool": "Jupyter Lab",
-                "Version": get_tool_version(
-                    ["jupyter", "lab", "--version"],
-                    r"(\d+\.\d+\.\d+)")
-            }
-        ]
-    },
+    # {
+    #     "Technology": "Jupyter",
+    #     "Tools": [
+    #         {
+    #             "Tool": "Jupyter Lab",
+    #             "Version": get_tool_version(
+    #                 ["jupyter", "lab", "--version"],
+    #                 r"(\d+\.\d+\.\d+)")
+    #         }
+    #     ]
+    # },
     {
         "Technology": "Kubernetes",
         "Tools": [
             {
                 "Tool": "kubectl",
                 "Version": get_tool_version(
-                    ["kubectl", "version", "--client", "--output=yaml"],
-                    r"gitVersion: v(\d+\.\d+\.\d+)")
+                    ["asdf", "list", "kubectl", "|", "xargs", "sed", "'s/*//g'"],
+                    r"(.*)")
             },
             {
                 "Tool": "Helm",
@@ -130,32 +130,70 @@ output_data = [
                 "Version": get_tool_version(
                     ["kubens", "--version"],
                     r"(\d+\.\d+\.\d+)")
+            },
+            {
+                "Tool": "kubie",
+                "Version": get_tool_version(
+                    ["kubie", "-V"],
+                    r"kubie (\d+\.\d+\.\d+)")
             }
         ]
     },
     {
-        "Technology": "PowerShell",
+        "Technology": "Networking",
         "Tools": [
             {
-                "Tool": "PowerShell",
+                "Tool": "dig",
                 "Version": get_tool_version(
-                    ["pwsh", "--version"],
-                    r"PowerShell (\d+\.\d+\.\d+)")
-            }
+                    ["dig", "-v"],
+                    r"DiG (\d+\.\d+\.\d+)")
+            },
+            {
+                "Tool": "iputils-ping",
+                "Version": get_tool_version(
+                    ["ping", "-V"],
+                    r"ping from iputils (\d+)")
+            },
+            {
+                "Tool": "nslookup",
+                "Version": get_tool_version(
+                    ["nslookup", "-version"],
+                    r"nslookup (\d+\.\d+\.\d+)")
+            },
+            {
+                "Tool": "traceroute",
+                "Version": get_tool_version(
+                    ["traceroute", "-V"],
+                    r"Modern traceroute for Linux, version (\d+\.\d+\.\d+)")
+            },
         ]
-    },
-    {
-        "Technology": "PowerShell Resources",
-        "Tools": pwsh_resources
     },
     {
         "Technology": "Python",
         "Tools": [
             {
+                "Tool": "cookiecutter",
+                "Version": get_tool_version(
+                    ["cookiecutter", "-v"],
+                    r"Cookiecutter (\d+\.\d+\.\d+)")
+            },
+            {
+                "Tool": "nox",
+                "Version": get_tool_version(
+                    ["nox", "--version"],
+                    r"(.*)")
+            },
+            {
+                "Tool": "poetry",
+                "Version": get_tool_version(
+                    ["poetry", "-V"],
+                    r"Poetry \(version (\d+\.\d+\.\d+)")
+            },
+            {
                 "Tool": "Python",
                 "Version": get_tool_version(
-                    ["python", "--version"],
-                    r"Python (\d+\.\d+\.\d+)")
+                    ["asdf", "list", "python", "|", "xargs", "sed", "'s/*//g'"],
+                    r"(.*)")
             }
         ]
     },
@@ -164,28 +202,55 @@ output_data = [
         "Tools": py_packages
     },
     {
-        "Technology": "Terraform",
+        "Technology": "Shell Add-Ons: PowerShell Resources",
+        "Tools": pwsh_resources
+    },
+    {
+        "Technology": "Shells",
         "Tools": [
             {
-                "Tool": "Terraform CLI",
+                "Tool": "bash",
                 "Version": get_tool_version(
-                    ["terraform", "-version"],
-                    r"(\d+\.\d+\.\d+)")
+                    ["bash", "--version"],
+                    r"GNU bash, version (.*) ")
             },
             {
-                "Tool": "Terragrunt",
+                "Tool": "PowerShell",
                 "Version": get_tool_version(
-                    ["terragrunt", "-v"],
-                    r"(\d+\.\d+\.\d+)")
+                    ["pwsh", "--version"],
+                    r"PowerShell (\d+\.\d+\.\d+)")
             },
             {
-                "Tool": "TFLint",
+                "Tool": "zsh",
                 "Version": get_tool_version(
-                    ["tflint", "-v"],
-                    r"(\d+\.\d+\.\d+)")
-            }
+                    ["zsh", "--version"],
+                    r"zsh (\d+\.\d+\.\d+)")
+            },
         ]
-    }
+    },
+    # {
+    #     "Technology": "Terraform",
+    #     "Tools": [
+    #         {
+    #             "Tool": "Terraform CLI",
+    #             "Version": get_tool_version(
+    #                 ["terraform", "-version"],
+    #                 r"(\d+\.\d+\.\d+)")
+    #         },
+    #         {
+    #             "Tool": "Terragrunt",
+    #             "Version": get_tool_version(
+    #                 ["terragrunt", "-v"],
+    #                 r"(\d+\.\d+\.\d+)")
+    #         },
+    #         {
+    #             "Tool": "TFLint",
+    #             "Version": get_tool_version(
+    #                 ["tflint", "-v"],
+    #                 r"(\d+\.\d+\.\d+)")
+    #         }
+    #     ]
+    # }
 ]
 
 print(json.dumps(output_data, indent=4))

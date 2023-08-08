@@ -13,11 +13,11 @@
 			"packages": "iputils-ping,traceroute,dnsutils"
 		},
 		"ghcr.io/natescherer/devcontainers-custom-features/hypermodern-python:1": {
-			"versions": "REPLACED-BY-GH-ACTION",
+			"versions": "${localEnv:PYTHON_VERS}",
 			"requirementsFile": "/opt/sredevcontainer/requirements.txt"
 		},
 		"https://dl.cloudsmith.io/public/natescherer/devcontainers-custom-features/raw/files/devcontainer-feature-asdf-package.tgz": {
-			"plugin": "REPLACED-BY-GH-ACTION"
+			"plugin": "${localEnv:KUBECTL_VERS}"
 		},
 		"ghcr.io/devcontainers/features/powershell:1": {
 			"version": "latest"
@@ -51,5 +51,5 @@
 		}
 	},
 	"onCreateCommand": "/opt/sredevcontainer/onCreate.sh",
-	"postAttachCommand": "/opt/sredevcontainer/postAttach.sh"
+	"postStartCommand": "/opt/sredevcontainer/postStart.sh"
 }

@@ -33,9 +33,10 @@ jobs:
           DEVCONTAINER_VERSION: ${{ steps.gitversion.outputs.FullSemVer }}
       - name: Determine Version Sets for Multi-Version Tools
         run: |
-          export KUBECTL_VERS=$(curl --request GET --url https://endoflife.date/api/kubernetes.json --header 'Accept: application/json' -sS | yq '.[] | select(.eol > now) | .cycle |= sub("^", "kubectl:") | .cycle' | xargs)
-          export PYTHON_VERS=$(curl --request GET --url https://endoflife.date/api/python.json --header 'Accept: application/json' -sS | yq '.[] | select(.eol > now) | .cycle' | xargs)
-          yq -i '.features."ghcr.io/natescherer/devcontainers-custom-features/hypermodern-python:1".versions = env(PYTHON_VERS)' src/.devcontainer/devcontainer.json -oj
+          KUBECTL_VERS=$(curl --request GET --url https://endoflife.date/api/kubernetes.json --header 'Accept: application/json' -sS | yq '.[] | select(.eol > now) | .cycle |= sub("^", "kubectl:") | .cycle' | xargs)
+          echo "KUBECTL_VERS=$KUBECTL_VERS" >> "$GITHUB_ENV"
+          PYTHON_VERS=$(curl --request GET --url https://endoflife.date/api/python.json --header 'Accept: application/json' -sS | yq '.[] | select(.eol > now) | .cycle' | xargs)
+          echo "PYTHON_VERS=$PYTHON_VERS" >> "$GITHUB_ENV"
       - name: Set up QEMU for multi-architecture builds
         uses: docker/setup-qemu-action@v2
       - name: Setup Docker buildx for multi-architecture builds

@@ -9,16 +9,15 @@
 	},
 	"remoteUser": "vscode",
 	"features": {
-		// "ghcr.io/devcontainers-contrib/features/apt-get-packages": {
-		// 	"packages": ""
-		// },
+		"ghcr.io/devcontainers-contrib/features/apt-get-packages:1": {
+			"packages": "iputils-ping,traceroute"
+		},
 		"ghcr.io/natescherer/devcontainers-custom-features/hypermodern-python:1": {
-			"versions": "3.8 3.9 3.10 3.11",
+			"versions": "REPLACED-BY-GH-ACTION",
 			"requirementsFile": "/opt/sredevcontainer/requirements.txt"
 		},
 		"https://dl.cloudsmith.io/public/natescherer/devcontainers-custom-features/raw/files/devcontainer-feature-asdf-package.tgz": {
-			// "plugin": "python:3.11 python:3.10 python:3.9 python:3.8 kubectl:1.25 kubectl:1.26 kubectl:1.27"
-			"plugin": "kubectl:1.25 kubectl:1.26 kubectl:1.27"
+			"plugin": "REPLACED-BY-GH-ACTION"
 		},
 		// Scripting Features
 		// "ghcr.io/devcontainers/features/python:1": {
@@ -75,11 +74,14 @@
 		"ghcr.io/devcontainers-contrib/features/kubie:1": {
 			"version": "latest"
 		},
-		// Pulled until PR can be created to ACTUALLY install latest versions
-		// "ghcr.io/devcontainers-contrib/features/kubectx-kubens:1": {
-		// 	"version": "latest"
-		// },
+		"https://dl.cloudsmith.io/public/natescherer/devcontainers-custom-features/raw/files/devcontainer-feature-kubectx-kubens.tgz": {
+			"version": "latest"
+		},
 		"ghcr.io/natescherer/devcontainers-custom-features/k9s:1": {
+			"version": "latest"
+		},
+		// Custom Features
+		"ghcr.io/devcontainers-contrib/features/airplane-cli:1": {
 			"version": "latest"
 		}
 	},

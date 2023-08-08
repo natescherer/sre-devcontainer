@@ -5,10 +5,8 @@ import requests
 import semver
 from rich import print # pylint: disable=redefined-builtin
 
-# with open("/opt/sredevcontainer/VERSION", encoding="utf-8") as f:
-#     current_version = f.readlines()[0]
-
-current_version = "0.0.0"
+with open("/opt/sredevcontainer/VERSION", encoding="utf-8") as f:
+    current_version = f.readlines()[0]
 
 api_uri = "https://api.github.com/repos/natescherer/sre-devcontainer/releases/latest"
 try:
@@ -19,9 +17,13 @@ except requests.exceptions.ConnectionError:
           "working.[/reverse red]")
     sys.exit(1)
 
-latest_version = api_response["tag_name"].replace("v","")
+latest_version = api_response["tag_name"].replace("v", "")
 
-if (semver.compare(current_version, latest_version)) == -1:
-    print("[reverse red]Current version of SRE devcontainer is out of date!"
-        " Please run 'Rebuild and Reopen in Container' task in VSCode to"
-        " update.[/reverse red]")
+update_message = "Current version of SRE devcontainer is out of date! Please update."
+
+with open("/etc/motd", "a+", encoding="utf-8") as file:
+    for line in file:
+        if update_message in line:
+            break
+    else:  # not found, we are at the eof
+        file.write(update_message)  # append missing data

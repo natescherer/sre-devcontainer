@@ -62,45 +62,24 @@ output_data = [
                 "Version": get_tool_version(
                     ["az", "--version", "--only-show-errors"],
                     r"azure-cli\s*(\d+\.\d+\.\d+)")
+            },
+            {
+                "Tool": "Azure kubelogin",
+                "Version": get_tool_version(
+                    ["kubelogin", "--version"],
+                    r"git hash: v(\d+\.\d+\.\d+)")
             }
         ]
     },
     {
-        "Technology": "Git",
+        "Technology": "Containers",
         "Tools": [
             {
-                "Tool": "Git",
+                "Tool": "devcontainer CLI",
                 "Version": get_tool_version(
-                    ["git", "--version"],
-                    r"git version (\d+\.\d+\.\d+)")
-            }
-        ]
-    },
-    {
-        "Technology": "GitHub",
-        "Tools": [
-            {
-                "Tool": "GitHub CLI",
-                "Version": get_tool_version(
-                    ["gh", "--version"],
-                    r"gh version (\d+\.\d+\.\d+)")
-            }
-        ]
-    },
-    # {
-    #     "Technology": "Jupyter",
-    #     "Tools": [
-    #         {
-    #             "Tool": "Jupyter Lab",
-    #             "Version": get_tool_version(
-    #                 ["jupyter", "lab", "--version"],
-    #                 r"(\d+\.\d+\.\d+)")
-    #         }
-    #     ]
-    # },
-    {
-        "Technology": "Kubernetes",
-        "Tools": [
+                    ["devcontainer", "--version"],
+                    r"(.*)")
+            },
             {
                 "Tool": "kubectl",
                 "Version": get_tool_version(
@@ -136,17 +115,98 @@ output_data = [
                 "Version": get_tool_version(
                     ["kubie", "-V"],
                     r"kubie (\d+\.\d+\.\d+)")
+            },
+            {
+                "Tool": "linkerd CLI",
+                "Version": get_tool_version(
+                    ["linkerd", "version", "--client"],
+                    r"Client version: (.*)")
             }
         ]
     },
     {
+        "Technology": "Development",
+        "Tools": [
+            {
+                "Tool": "Git",
+                "Version": get_tool_version(
+                    ["git", "--version"],
+                    r"git version (\d+\.\d+\.\d+)")
+            },
+            {
+                "Tool": "GitHub CLI",
+                "Version": get_tool_version(
+                    ["gh", "--version"],
+                    r"gh version (\d+\.\d+\.\d+)")
+            },
+            {
+                "Tool": "tfs/tfx CLI",
+                "Version": get_tool_version(
+                    ["tfx", "version"],
+                    r"Version (\d+\.\d+\.\d+)")
+            }
+        ]
+    },
+    {
+        "Technology": "Editors & Data Processing",
+        "Tools": [
+            {
+                "Tool": "Emacs",
+                "Version": get_tool_version(
+                    ["emacs", "--version", "--only-show-errors"],
+                    r"GNU Emacs (.*)$")
+            },
+            {
+                "Tool": "nano",
+                "Version": get_tool_version(
+                    ["nano", "-V"],
+                    r"GNU nano, version (.*)$")
+            },
+            {
+                "Tool": "vim",
+                "Version": get_tool_version(
+                    ["nano", "-V"],
+                    r"VIM - Vi IMproved (.*) ")
+            },
+            {
+                "Tool": "yq",
+                "Version": get_tool_version(
+                    ["yq", "-V"],
+                    r"yq (https://github.com/mikefarah/yq/) version v(\d+\.\d+\.\d+)")
+            }
+        ]
+    },
+    # {
+    #     "Technology": "Jupyter",
+    #     "Tools": [
+    #         {
+    #             "Tool": "Jupyter Lab",
+    #             "Version": get_tool_version(
+    #                 ["jupyter", "lab", "--version"],
+    #                 r"(\d+\.\d+\.\d+)")
+    #         }
+    #     ]
+    # },
+    {
         "Technology": "Networking",
         "Tools": [
+            {
+                "Tool": "curl",
+                "Version": get_tool_version(
+                    ["curl", "--version"],
+                    r"curl (\d+\.\d+\.\d+)")
+            },
             {
                 "Tool": "dig",
                 "Version": get_tool_version(
                     ["dig", "-v"],
                     r"DiG (\d+\.\d+\.\d+)")
+            },
+            {
+                "Tool": "ELinks",
+                "Version": get_tool_version(
+                    ["elinks", "--version"],
+                    r"ELinks (\d+\.\d+\.\d+)")
             },
             {
                 "Tool": "iputils-ping",
@@ -155,10 +215,28 @@ output_data = [
                     r"ping from iputils (\d+)")
             },
             {
+                "Tool": "nmap",
+                "Version": get_tool_version(
+                    ["nmap", "-version"],
+                    r"Nmap version (\S*) ( https://nmap.org )")
+            },
+            {
                 "Tool": "nslookup",
                 "Version": get_tool_version(
                     ["nslookup", "-version"],
                     r"nslookup (\d+\.\d+\.\d+)")
+            },
+            {
+                "Tool": "procdump",
+                "Version": get_tool_version(
+                    ["procdump", "-h"],
+                    r"ProcDump v(.*) ")
+            },
+            {
+                "Tool": "tcpdump",
+                "Version": get_tool_version(
+                    ["tcpdump", "--version"],
+                    r"tcpdump version (\d+\.\d+\.\d+)")
             },
             {
                 "Tool": "traceroute",
@@ -215,6 +293,12 @@ output_data = [
                     r"GNU bash, version (.*) ")
             },
             {
+                "Tool": "fish",
+                "Version": get_tool_version(
+                    ["fish", "--version"],
+                    r"fish, version (\d+\.\d+\.\d+)")
+            },
+            {
                 "Tool": "PowerShell",
                 "Version": get_tool_version(
                     ["pwsh", "--version"],
@@ -225,7 +309,7 @@ output_data = [
                 "Version": get_tool_version(
                     ["zsh", "--version"],
                     r"zsh (\d+\.\d+\.\d+)")
-            },
+            }
         ]
     },
     # {

@@ -10,20 +10,17 @@
 	"remoteUser": "vscode",
 	"features": {
 		"ghcr.io/devcontainers-contrib/features/apt-get-packages:1": {
-			"packages": "iputils-ping,traceroute,dnsutils"
+			"packages": "iputils-ping,traceroute,dnsutils,emacs-nox,tcpdump,elinks"
 		},
 		"ghcr.io/natescherer/devcontainers-custom-features/hypermodern-python:1": {
 			"versions": "${localEnv:PYTHON_VERS}",
 			"requirementsFile": "/opt/sredevcontainer/requirements.txt"
 		},
 		"https://dl.cloudsmith.io/public/natescherer/devcontainers-custom-features/raw/files/devcontainer-feature-asdf-package.tgz": {
-			"plugin": "${localEnv:KUBECTL_VERS}"
+			"plugin": "${localEnv:KUBECTL_VERS} kubelogin:latest"
 		},
 		"ghcr.io/devcontainers/features/powershell:1": {
 			"version": "latest"
-		},
-		"ghcr.io/natescherer/devcontainers-custom-features/powershell-resources:1": {
-			"requiredResourceJsonFile": "/opt/sredevcontainer/PowerShellResources.json"
 		},
 		"ghcr.io/devcontainers/features/azure-cli:1": {
 			"version": "latest",
@@ -47,6 +44,22 @@
 			"version": "latest"
 		},
 		"ghcr.io/devcontainers-contrib/features/airplane-cli:1": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers-contrib/features/npm-package:1": {
+			"package": "tfx-cli",
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers-contrib/features/fish-apt-get:1": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers-contrib/features/linkerd2-cli-stable:1": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers-contrib/features/nmap-apt-get:1": {
+			"version": "latest"
+		},
+		"ghcr.io/eliises/devcontainer-features/devcontainers-cli:1": {
 			"version": "latest"
 		}
 	},

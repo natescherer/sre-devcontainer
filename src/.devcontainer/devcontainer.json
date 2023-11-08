@@ -37,7 +37,7 @@
 		"ghcr.io/devcontainers-contrib/features/kubie:1": {
 			"version": "latest"
 		},
-		"https://dl.cloudsmith.io/public/natescherer/devcontainers-custom-features/raw/files/devcontainer-feature-kubectx-kubens.tgz": {
+		"ghcr.io/devcontainers-contrib/features/kubectx-kubens:1": {
 			"version": "latest"
 		},
 		"ghcr.io/natescherer/devcontainers-custom-features/k9s:1": {

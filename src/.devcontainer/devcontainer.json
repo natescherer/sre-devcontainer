@@ -9,7 +9,7 @@
 	},
 	"remoteUser": "vscode",
 	"features": {
-		"ghcr.io/devcontainers-contrib/features/apt-get-packages:1": {
+		"ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
 			"packages": "iputils-ping,traceroute,dnsutils,emacs-nox,tcpdump,elinks"
 		},
 		"ghcr.io/natescherer/devcontainers-custom-features/hypermodern-python:1": {

@@ -1,0 +1,68 @@
+{
+	"name": "SRE",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"context": ".",
+		"args": {
+			"NONROOT_USER": "vscode"
+		}
+	},
+	"remoteUser": "vscode",
+	"features": {
+		"ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
+			"packages": "iputils-ping,traceroute,dnsutils,emacs-nox,tcpdump,elinks"
+		},
+		"ghcr.io/natescherer/devcontainers-custom-features/hypermodern-python:1": {
+			"versions": "${localEnv:PYTHON_VERS}",
+			"requirementsFile": "/opt/sredevcontainer/requirements.txt"
+		},
+		"https://dl.cloudsmith.io/public/natescherer/devcontainers-custom-features/raw/files/devcontainer-feature-asdf-package.tgz": {
+			"plugin": "${localEnv:KUBECTL_VERS} kubelogin:latest"
+		},
+		"ghcr.io/devcontainers/features/powershell:1": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/azure-cli:1": {
+			"version": "latest",
+			"extensions": "acrquery,acrtransfer,automation,azure-devops,k8s-configuration,k8s-extension,kusto,log-analytics,redisenterprise,ssh,webapp"
+		},
+		"ghcr.io/devcontainers/features/github-cli:1": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
+			"version": "none",
+			"helm": "latest",
+			"minikube": "none"
+		},
+		"ghcr.io/devcontainers-contrib/features/kubie:1": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers-contrib/features/kubectx-kubens:1": {
+			"version": "latest"
+		},
+		"ghcr.io/natescherer/devcontainers-custom-features/k9s:1": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers-contrib/features/airplane-cli:1": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers-contrib/features/npm-package:1": {
+			"package": "tfx-cli",
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers-contrib/features/fish-apt-get:1": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers-contrib/features/linkerd2-cli-stable:1": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers-contrib/features/nmap-apt-get:1": {
+			"version": "latest"
+		},
+		"ghcr.io/eliises/devcontainer-features/devcontainers-cli:1": {
+			"version": "latest"
+		}
+	},
+	"onCreateCommand": "/opt/sredevcontainer/onCreate.sh",
+	"postStartCommand": "/opt/sredevcontainer/postStart.sh"
+}
